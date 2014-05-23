@@ -1,0 +1,12 @@
+#desktop {
+	margin-top: 20px;
+}
+
+.no-sidebar {
+	@include grid-column($columns:12);
+}
+@media #{$large-up} { 
+	.no-sidebar {
+	  @include calc(width, '100% - 50px');
+	}
+}

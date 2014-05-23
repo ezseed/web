@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+@mixin transition($duration:1s, $property:width, $function:linear, $delay:0) {
+  transition-property: #{$property};
+  transition-duration: $duration;
+  transition-timing-function: $function;
+  transition-delay: $delay;
+}
+
+@mixin calc($prop, $val) {
+  @each $pre in -webkit-, -moz- {
+    #{$prop}: $pre + calc(#{$val});
+  }
+  #{$prop}: calc(#{$val});
+}

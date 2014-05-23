@@ -1,0 +1,93 @@
+@mixin button-checkbox($bg:$primary-color, $radius:false, $disabled:false) {
+
+  // We control which background styles are used,
+  // these can be removed by setting $bg:false
+  @if $bg {
+    // This find the lightness percentage of the background color.
+    $bg-lightness: lightness($bg);
+
+    background-color: $bg;
+    border-color: scale-color($bg, $lightness: $button-function-factor);
+    &:hover { background-color: scale-color($bg, $lightness: $button-function-factor); }
+
+    // We control the text color for you based on the background color.
+    @if $bg-lightness > 70% {
+      color: $button-font-color-alt;
+      &:hover { color: $button-font-color-alt; }
+    }
+    @else {
+      color: $button-font-color;
+      &:hover { color: $button-font-color; }
+    }
+  }
+
+  // We can set $disabled:true to create a disabled transparent button.
+  @if $disabled {
+    cursor: $cursor-default-value;
+    opacity: $button-disabled-opacity;
+    box-shadow: none;
+    &:hover { background-color: $bg; }
+  }
+
+  // We can control how much button radius us used.
+  @if $radius == true { @include radius($button-radius); }
+  @else if $radius { @include radius($radius); }
+
+}
+
+.button-checkbox {
+	@include button-base;
+	@include button-size;
+  @include button-group-style;
+	@include button-checkbox;
+
+	&, &:hover, &:active {
+		outline:0;
+	}
+
+  &.active {
+  	background-color: scale-color($primary-color, $lightness: $button-function-factor);
+  }
+
+  @include single-transition(background-color);
+
+  &.secondary { @include button-style($bg:$secondary-color); }
+  &.secondary.active { background-color: scale-color($secondary-color, $lightness: $button-function-factor); }
+
+  &.tertiary { @include button-style($bg:$tertiary-color); }
+  &.tertiary.active { background-color: scale-color($tertiary-color, $lightness: $button-function-factor); }
+
+  &.success   { @include button-style($bg:$success-color); }
+  &.alert     { @include button-style($bg:$alert-color); }
+
+  &.large  { @include button-size($padding:$button-lrg); }
+  &.small  { @include button-size($padding:$button-sml); }
+  &.tiny   { @include button-size($padding:$button-tny); }
+  &.expand { @include button-size($padding:null,$full-width:true); }
+
+  &.left-align  { text-align: left; text-indent: rem-calc(12); }
+  &.right-align { text-align: right; padding-right: rem-calc(12); }
+
+  &.radius { @include button-style($bg:false, $radius:true); }
+  &.round  { @include button-style($bg:false, $radius:$button-round); }
+
+  &.disabled, &[disabled] { @include button-style($bg:$primary-color, $disabled:true);
+    &.secondary { @include button-style($bg:$secondary-color, $disabled:true); }
+    &.success { @include button-style($bg:$success-color, $disabled:true); }
+    &.alert { @include button-style($bg:$alert-color, $disabled:true); }
+  }
+
+  border-left: $button-group-border-width solid;
+  border-color: rgba(255, 255, 255, 0.5);
+  
+  li:first-child & {
+    border-left: 0;
+  }
+
+  @media #{$medium-up} {
+    button, .button {
+      @include button-base($style:false, $display:inline-block);
+      @include button-size($padding:false, $full-width:false);
+    }
+  }
+}

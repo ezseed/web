@@ -1,0 +1,40 @@
+{
+  "name": "ezseed-web",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ezseed/ezseed",
+  "authors": [
+    "soyuka <soyuka@gmail.com>"
+  ],
+  "description": "Ezseed web interface",
+  "main": "server.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-classy": "~0.4.2",
+    "angular": "~1.2.16",
+    "foundation": "~5.2.2",
+    "angular-foundation": "~0.2.0",
+    "angular-route": "~1.2.16",
+    "angular-charts": "~0.2.1",
+    "d3": "~3.4.8",
+    "angular-animate": "~1.2.16"
+  },
+  "overrides": {
+    "foundation": {
+      "ignore": true
+    },
+    "angular-animate": {
+      "ignore": true
+    }
+  }
+}

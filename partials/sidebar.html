@@ -10,7 +10,7 @@
 	<ul class="button-group">
 	  <li ng-repeat="(type, filter) in filters">
 	  	<div class="button-checkbox secondary small" ng-click="choose('filters')(type)" ng-class="{active: filter}">
-				<i ng-if="!sidebar" class="icon-{{type}}" title="{{type | capitalize}}"></i>
+			<i ng-if="!sidebar" class="icon-{{type}}" title="{{type | capitalize}}"></i>
 	  		<span ng-if="sidebar">{{type | capitalize}}</span>
 	  	</div>
 

@@ -15,34 +15,7 @@
           <p class="browsehappy">Ouch</p>
       <![endif]-->
 
-    <nav class="top-bar">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="#"><span class="red">ez</span>seed</a></h1>
-        </li>
-        <!-- Responsive menu -->
-        <!-- <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li> -->
-      </ul>
-
-      <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="right">
-          <li class="has-dropdown" dropdown-toggle="#profile">
-            <a href="#">soyuka</a>
-            <ul class="f-dropdown" id="profile">
-              <li><a href="#">Settings</a></li>
-              <li><a href="#">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
-
-        <!-- Left Nav Section -->
-        <ul class="left">
-          <li><a href="#"><i class="icon-home"></i> Desktop</a></li>
-          <li><a href="#"><i class="icon-network"></i> Torrents</a></li>
-        </ul>
-      </section>
-    </nav>
+    <nav class="top-bar" ng-include src="'partials/header.html'" ></nav>
 
     <div class="row" id="container">
       <aside class="columns small-12 large-2" ng-include src="'partials/sidebar.html'" id="sidebar" ng-controller="sidebarCtrl" ng-class="{mini: !sidebar}" ></aside>
@@ -52,5 +25,3 @@
     <script src="dist/js/main.js"></script>
   </body>
 </html>
-
-  

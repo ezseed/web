@@ -20,7 +20,7 @@ angular.module('ezseed.sidebar', ['ngAnimate'])
       serie: false
     }
 
-    $scope.choose = function(type) { 
+    $scope.choose = function(type) {
       return function(key, reset) {
         $scope[type][key] = !$scope[type][key]
 
@@ -34,14 +34,14 @@ angular.module('ezseed.sidebar', ['ngAnimate'])
             } else if(typeof reset == 'boolean' && i !== key) {
               $scope[type][i] = false
             }
-          
+
           }
         }
 
       }
     }
 
-    $scope.reset = function(type) { 
+    $scope.reset = function(type) {
       return function() {
         for(var i in $scope[type]) {
           $scope[type][i] = false
@@ -62,4 +62,21 @@ angular.module('ezseed.sidebar', ['ngAnimate'])
         return result
       }
     }
+	})
+
+	.directive('ezScroll', function ($window) {
+		return {
+			restrict: 'A',
+			link: function (scope, element, attrs) {
+				angular.element($window).bind("scroll", function() {
+					console.log(this.pageYOffset)
+					if(this.pageYOffset > 20) {
+						element.css({'padding-top': this.pageYOffset - 50 + 'px'})
+					} else {
+						element.css({'padding-top': 0})
+					}
+
+				})
+			}
+		}
 	})

@@ -1,12 +1,12 @@
 aside {
-	
+
 	height: auto;
 	color: #333333;
 	border-right: 1px solid scale-color($white, $lightness:-11%);
 	background-color: $white;
 	overflow: hidden;
 
-	h5 { 
+	h5 {
 		margin-top: 20px;
   }
 
@@ -39,7 +39,7 @@ aside {
 		}
 
 		input {
-			margin-bottom: 0; 
+			margin-bottom: 0;
 		}
 	}
 
@@ -77,8 +77,14 @@ aside {
 		text-align: center;
 
 		> div {
+			width: 40%;
 			display: inline-block;
-			width: 50%;
+			float: left;
+		}
+
+		> div:first-child {
+			width: 20%;
+			float: right;
 		}
 
 		ul.button-group li {
@@ -87,18 +93,30 @@ aside {
 		}
 
 
+		.open-sidebar {
+			display: inline-block;
+			position: relative; top:0; left: 0;
+			width: 50%;
+			height: 29px;
+			text-align: center;
+		}
+
 	}
 
 	@include transition(700ms, "width");
 
 }
 
-@media #{$large-up} { 
+@media #{$medium-up} {
+	#container > .columns {
+		display: table-cell;
+		vertical-align: top;
+		float: none;
+	}
+
 	aside {
-		height: 100vh;
 
 		&.mini {
-			height: 100vh!important;
 			width: 43px;
 
 			ul.button-group li {
@@ -134,4 +152,3 @@ aside {
 	}
 
 }
-

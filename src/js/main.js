@@ -6,7 +6,7 @@
 angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ezseed.desktop', 'ezseed.sidebar'])
   .filter('capitalize', function() {
     return function(input, scope) {
-      
+
       if (input) {
         input = input.toLowerCase().charAt(0).toUpperCase() + input.substring(1)
       }
@@ -28,7 +28,7 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ezseed.desktop', 'ezseed.
 
     // configure html5 to get links working on jsfiddle
     $locationProvider.html5Mode(true)
-    
+
   })
   .run(function($rootScope){
     $rootScope.sidebar = true

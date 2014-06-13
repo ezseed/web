@@ -18,8 +18,8 @@
     <nav class="top-bar" ng-include src="'partials/header.html'" ></nav>
 
     <div class="row" id="container">
-      <aside class="columns small-12 large-2" ng-include src="'partials/sidebar.html'" id="sidebar" ng-controller="sidebarCtrl" ng-class="{mini: !sidebar}" ></aside>
-      <div class="columns" ng-class="{'no-sidebar': !sidebar, 'large-10': sidebar}" ng-view></div>
+      <aside ez-scroll class="columns small-12 medium-4 large-2" ng-include src="'partials/sidebar.html'" id="sidebar" ng-controller="sidebarCtrl" ng-class="{mini: !sidebar}" ></aside>
+      <div class="columns" ng-class="{'no-sidebar': !sidebar, 'small-12 medium-8 large-10': sidebar}" ng-view></div>
     </div>
 
     <script src="dist/js/main.js"></script>

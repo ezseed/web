@@ -3,7 +3,6 @@ var gulp = require('gulp')
   , bower = require('gulp-bower-files')
   , uglify = require('gulp-uglify')
   , ngmin = require('gulp-ngmin')
-  , add = require('gulp-add-src')
   , rename = require('gulp-rename')
   , compass = require('gulp-compass')
   , minifyCSS = require('gulp-minify-css')
@@ -17,7 +16,7 @@ var paths = {
  */
 gulp.task('bower', function() {
     bower()
-			.pipe(add('bower_components/modernizr/modernizr.js'))
+			.pipe(gulp.src('bower_components/modernizr/modernizr.js'))
 			.pipe(concat('vendor.js'))
 			// .pipe(uglify())
       .pipe(gulp.dest('./dist/js'))
@@ -55,7 +54,7 @@ gulp.task('styles', function() {
 })
 
 gulp.task('default', ['bower', 'scripts', 'styles'])
-gulp.task('watch', function() { 
-	gulp.watch(paths.scripts, ['scripts']) 
-	gulp.watch(paths.styles, ['styles']) 
+gulp.task('watch', function() {
+	gulp.watch(paths.scripts, ['scripts'])
+	gulp.watch(paths.styles, ['styles'])
 })

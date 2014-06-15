@@ -11,27 +11,6 @@
 	<ul class="button-group">
 	  <li ng-repeat="(type, filter) in filters">
 	  	<div class="button-checkbox secondary small" ng-click="choose('filters')(type)" ng-class="{active: filter}">
-			<i ng-if="!sidebar" class="icon-{{type}}" title="{{type | capitalize}}"></i>
-	  		<span ng-if="sidebar">{{type | capitalize}}</span>
-	  	</div>
-
-	  </li>
-	</ul>
-</div>
-
-<div id="display">
-		<li ng-if="!sidebar && (enabled('displays')() || enabled('filters')())">
-			<i class="icon-undo open-sidebar pointer"
-			ng-click="reset('displays')();reset('filters')()"></i>
-		</li>
-	</ul>
-</div>
-
-<div id="filter">
-	<h5 ng-if="sidebar">Filters <small class="reset" ng-show="enabled('filters')()" ng-click="reset('filters')()">[reset]</small></h5>
-	<ul class="button-group">
-	  <li ng-repeat="(type, filter) in filters">
-	  	<div class="button-checkbox secondary small" ng-click="choose('filters')(type)" ng-class="{active: filter}">
 				<i ng-if="!sidebar" class="icon-{{type}}" title="{{type | capitalize}}"></i>
 	  		<span ng-if="sidebar">{{type | capitalize}}</span>
 	  	</div>

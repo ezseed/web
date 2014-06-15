@@ -4,6 +4,33 @@
 * Description
 */
 angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ezseed.desktop', 'ezseed.sidebar'])
+  .controller('MainCtrl', function($scope) {
+    $scope.sidebar = true
+
+    $scope.toggleSidebar = function() {
+      $scope.sidebar = !$scope.sidebar
+    }
+
+    //get back from storage
+    $scope.filters = {
+      videos: false,
+      albums: false,
+      others: false
+    }
+
+    $scope.displays = {
+      list: true,
+      table: false,
+      thumb: false
+    }
+
+    $scope.tags = {
+      sd: false,
+      hd: false,
+      movie: false,
+      serie: false
+    }
+  })
   .filter('capitalize', function() {
     return function(input, scope) {
 
@@ -29,11 +56,4 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ezseed.desktop', 'ezseed.
     // configure html5 to get links working on jsfiddle
     $locationProvider.html5Mode(true)
 
-  })
-  .run(function($rootScope){
-    $rootScope.sidebar = true
-
-    $rootScope.toggleSidebar = function() {
-      $rootScope.sidebar = !$rootScope.sidebar
-    }
   })

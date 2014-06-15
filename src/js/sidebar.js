@@ -1,30 +1,11 @@
 angular.module('ezseed.sidebar', ['ngAnimate'])
 	.controller('sidebarCtrl', function($scope) {
-    //get back from storage
-    $scope.filters = {
-      videos: false,
-      albums: false,
-      others: false
-    }
-
-    $scope.displays = {
-      list: false,
-      table: false,
-      thumb: false
-    }
-
-    $scope.tags = {
-      sd: false,
-      hd: false,
-      movie: false,
-      serie: false
-    }
-
+  
     $scope.choose = function(type) {
       return function(key, reset) {
         $scope[type][key] = !$scope[type][key]
 
-        //checkbox is now option - reset others
+        //checkbox is now an <option> - reset others
         if(reset) {
 
           for(var i in $scope[type]) {
@@ -69,7 +50,6 @@ angular.module('ezseed.sidebar', ['ngAnimate'])
 			restrict: 'A',
 			link: function (scope, element, attrs) {
 				angular.element($window).bind("scroll", function() {
-					console.log(this.pageYOffset)
 					if(this.pageYOffset > 20) {
 						element.css({'padding-top': this.pageYOffset - 50 + 'px'})
 					} else {

@@ -5,6 +5,7 @@ var gulp = require('gulp')
   , ngmin = require('gulp-ngmin')
   , rename = require('gulp-rename')
   , compass = require('gulp-compass')
+  , add = require('gulp-add-src')
   , minifyCSS = require('gulp-minify-css')
 
 var paths = {
@@ -16,7 +17,7 @@ var paths = {
  */
 gulp.task('bower', function() {
     bower()
-			.pipe(gulp.src('bower_components/modernizr/modernizr.js'))
+			.pipe(add('bower_components/modernizr/modernizr.js'))
 			.pipe(concat('vendor.js'))
 			// .pipe(uglify())
       .pipe(gulp.dest('./dist/js'))

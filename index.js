@@ -1,5 +1,5 @@
 var express = require('express')
-var app = express()
+var app = new express.Router()
 
 // var p = require('path')
 

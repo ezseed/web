@@ -4,7 +4,7 @@ var gulp = require('gulp')
   , uglify = require('gulp-uglify')
   , ngmin = require('gulp-ngmin')
   , rename = require('gulp-rename')
-  , compass = require('gulp-compass')
+  , sass = require('gulp-sass')
   , add = require('gulp-add-src')
   , minifyCSS = require('gulp-minify-css')
 
@@ -38,16 +38,8 @@ gulp.task('scripts', function() {
 
 gulp.task('styles', function() {
   gulp.src(paths.styles)
-  .pipe(compass({
-    css: './dist/css',
-    sass: './src/scss',
-    image: './img',
-    relative: true,
-    import_path: './bower_components'
-  }))
-  .on('error', function(err) {
-    console.error(err)
-  })
+  .pipe(sass({errLogToConsole: true, includePaths: ['./bower_components']}))
+  .pipe(gulp.dest('./dist/css'))
   .pipe(minifyCSS())
   .pipe(rename('app.min.css'))
   .pipe(gulp.dest('./dist/css'));

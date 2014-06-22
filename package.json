@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "postinstall": "./node_modules/bower/bin/bower -q -s -f install && gulp"
+    "postinstall": "./node_modules/bower/bin/bower -q -s -f install | xargs echo && gulp"
   },
   "dependencies": {
     "express": "^4.1.1",

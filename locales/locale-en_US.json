@@ -1,0 +1,10 @@
+{
+  "MOVIES": "Movies",
+  "ALBUMS": "Albums",
+  "OTHERS": "Others",
+  "LIBRARIES": "Libraries",
+  "DISK_USAGE": "Disk usage",
+  "FILTERS": "Filters",
+  "NAME": "Name",
+  "PATH": "Path"
+}

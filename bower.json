@@ -23,13 +23,26 @@
     "angular-classy": "~0.4.2",
     "angular": "~1.2.16",
     "foundation": "~5.2.2",
-    "angular-foundation": "~0.2.0",
+    "angular-foundation": "~0.3.1",
     "angular-route": "~1.2.16",
-    "angular-animate": "~1.2.16"
+    "angular-animate": "~1.2.16",
+    "ngstorage": "~0.3.0",
+    "angular-ui-router": "~0.2.10",
+    "angular-translate": "~2.2.0",
+    "angular-translate-handler-log": "~2.0.1",
+    "angular-translate-loader-url": "~2.2.0",
+    "color-thief": "*",
+    "checklist-model": "~0.1.3"
   },
   "overrides": {
     "foundation": {
       "ignore": true
+    },
+    "color-thief": {
+      "main": "src/color-thief.js"
     }
+  },
+  "resolutions": {
+    "angular": "1.2.21"
   }
 }

@@ -9,31 +9,31 @@ var gulp = require('gulp')
   , minifyCSS = require('gulp-minify-css')
 
 var paths = {
-	scripts: ['./src/js/**/*.js', './src/js/*.js'],
-	styles: ['./src/scss/*.scss', './src/scss/**/*.scss']
+  scripts: ['./src/js/**/**/*.js', './src/js/**/*.js', './src/js/*.js'],
+  styles: ['./src/scss/*.scss', './src/scss/**/*.scss']
 }
 /**
  * Get bower src, concats them together
  */
 gulp.task('bower', function() {
-    bower()
-			.pipe(add('bower_components/modernizr/modernizr.js'))
-			.pipe(concat('vendor.js'))
-			// .pipe(uglify())
-      .pipe(gulp.dest('./dist/js'))
+  bower()
+    .pipe(add('bower_components/modernizr/modernizr.js'))
+    .pipe(concat('vendor.js'))
+    // .pipe(uglify())
+    .pipe(gulp.dest('./dist/js'))
 })
 
 gulp.task('scripts', function() {
-	gulp.src(paths.scripts)
-		.pipe(ngmin())
+  gulp.src(paths.scripts)
+    .pipe(ngmin())
     .on('error', function(err) {
       console.error(err)
     })
-		.pipe(concat('main.js'))
-		.pipe(gulp.dest('./dist/js'))
-		.pipe(uglify({mangle: false}))
-		.pipe(rename('main.min.js'))
-		.pipe(gulp.dest('./dist/js'))
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest('./dist/js'))
+    .pipe(uglify({mangle: false}))
+    .pipe(rename('main.min.js'))
+    .pipe(gulp.dest('./dist/js'))
 })
 
 gulp.task('styles', function() {
@@ -48,6 +48,6 @@ gulp.task('styles', function() {
 
 gulp.task('default', ['bower', 'scripts', 'styles'])
 gulp.task('watch', function() {
-	gulp.watch(paths.scripts, ['scripts'])
-	gulp.watch(paths.styles, ['styles'])
+  gulp.watch(paths.scripts, ['scripts'])
+  gulp.watch(paths.styles, ['styles'])
 })

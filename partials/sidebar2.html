@@ -1,0 +1,81 @@
+
+<li><a ui-sref="home.movies">Movies</a></li>
+<i class="icon-resize-small close-sidebar" ng-click="toggleSidebar()" ng-if="sidebar"></i>
+<i class="icon-resize-full open-sidebar pointer" ng-click="toggleSidebar()" ng-if="!sidebar"></i>
+
+<i class="icon-undo open-sidebar pointer"
+	ng-click="reset('displays')();reset('filters')()"
+	ng-if="!sidebar && (enabled('displays')() || enabled('filters')())"></i>
+
+<div id="filter">
+  <h5 ng-if="sidebar">Filters <small class="reset" ng-show="enabled('filters')()" ng-click="reset('filters')()">[reset]</small></h5>
+  <ul class="button-group">
+    <li ng-repeat="(type, filter) in filters">
+      <div class="button-checkbox secondary small" ng-click="choose('filters')(type)" ng-class="{active: filter}">
+        <i ng-if="!sidebar" class="icon-{{type}}" title="{{type | capitalize}}"></i>
+        <span ng-if="sidebar">{{type | capitalize}}</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- <div id="display"> -->
+<!--  -->
+<!-- 	<h5 ng&#45;if="sidebar">Display <small class="pointer" ng&#45;show="enabled('displays')()" ng&#45;click="reset('displays')()">[reset]</small></h5> -->
+<!-- 	<ul class="button&#45;group"> -->
+<!-- 	  <li ng&#45;repeat="(type, display) in displays"> -->
+<!-- 	  	<div class="button&#45;checkbox small" ng&#45;click="choose('displays')(type, true)" ng&#45;class="{active: display}"> -->
+<!-- 				<i ng&#45;if="!sidebar" class="icon&#45;{{type}}" title="{{type | capitalize}}"></i> -->
+<!-- 	  		<span ng&#45;if="sidebar">{{type | capitalize}}</span> -->
+<!-- 	  	</div> -->
+<!-- 	  </li> -->
+<!-- 	</ul> -->
+<!-- </div> -->
+
+<div id="tags" class="row collapse" ng-if="filters.videos">
+	<h5>Tags <small class="pointer" ng-show="enabled('tags')()" ng-click="reset('tags')()">[reset]</small></h5>
+	<div class="large-7 columns">
+		<ul class="button-group">
+		  <li>
+		  	<div class="button-checkbox tertiary small" ng-click="choose('tags')('movie', ['movie', 'serie'])" ng-class="{active: tags.movie}">Movies</div>
+		  </li>
+		  <li>
+		  	<div class="button-checkbox tertiary small" ng-click="choose('tags')('serie', ['movie', 'serie'])" ng-class="{active: tags.serie}">Series</div>
+		  </li>
+		</ul>
+	</div>
+	<div class="large-5 columns">
+		<ul class="button-group">
+		  <li>
+		  	<div class="button-checkbox tertiary small" ng-click="choose('tags')('hd', ['hd', 'sd'])" ng-class="{active: tags.hd}">HD</div>
+		  </li>
+		  <li>
+		  	<div class="button-checkbox tertiary small" ng-click="choose('tags')('sd', ['hd', 'sd'])" ng-class="{active: tags.sd}">SD</div>
+		  </li>
+		</ul>
+
+	</div>
+</div>
+
+<div ng-if="sidebar">
+	<h5>Libraries</h5>
+	<div id="watched-paths">
+		<ul>
+                  <li ng-repeat="p in paths.paths">
+                    <input type="checkbox" id="{{p._id}}" ng-value="p._id" class="checkbox"><label for="{{p._id}}">{{p.path}}</label>
+                  </li>
+		</ul>
+	</div>
+
+        <h5>Disk usage <small>{{size.total.pretty}} out of {{user.prettySize}}</small></h5>
+	<div id="disk-usage">
+          <meter value="{{size.total.bytes}}" min="0" max="{{user.spaceLeft}}" title="bytes">
+	    <div class="meter-gauge"></div>
+	  </meter>
+	  <ul class="swatch">
+            <li class="swatch__elem">Audio <span class="used-space">{{size.albums.pretty}}</span></li>
+	    <li class="swatch__elem">Movies <span class="used-space">{{size.movies.pretty}}</span></li>
+            <li class="swatch__elem">Other <span class="used-space">{{size.others.pretty}}</span></li>
+	  </ul>
+	</div>
+</div>

@@ -51,26 +51,29 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-undo:before { content: '\e815'; } /* '' */
-.icon-hdd:before { content: '\e80b'; } /* '' */
-.icon-check-empty:before { content: '\e809'; } /* '' */
-.icon-others:before { content: '\e813'; } /* '' */
-.icon-videos:before { content: '\e812'; } /* '' */
-.icon-albums:before { content: '\e807'; } /* '' */
-.icon-thumb:before { content: '\e805'; } /* '' */
-.icon-list:before { content: '\e806'; } /* '' */
-.icon-view-mode:before { content: '\e80c'; } /* '' */
+.icon-laptop:before { content: '\e800'; } /* '' */
 .icon-home:before { content: '\e801'; } /* '' */
 .icon-check:before { content: '\e802'; } /* '' */
-.icon-trash-circled:before { content: '\e80f'; } /* '' */
+.icon-table:before { content: '\e803'; } /* '' */
+.icon-download:before { content: '\e804'; } /* '' */
+.icon-thumb:before { content: '\e805'; } /* '' */
+.icon-list:before { content: '\e806'; } /* '' */
+.icon-albums:before { content: '\e807'; } /* '' */
+.icon-network:before { content: '\e808'; } /* '' */
+.icon-check-empty:before { content: '\e809'; } /* '' */
+.icon-off:before { content: '\e80a'; } /* '' */
+.icon-hdd:before { content: '\e80b'; } /* '' */
+.icon-view-mode:before { content: '\e80c'; } /* '' */
+.icon-resize-small:before { content: '\e80d'; } /* '' */
+.icon-resize-full:before { content: '\e80e'; } /* '' */
+.icon-folder:before { content: '\e80f'; } /* '' */
 .icon-cog:before { content: '\e810'; } /* '' */
 .icon-wrench:before { content: '\e811'; } /* '' */
-.icon-resize-full:before { content: '\e80e'; } /* '' */
-.icon-resize-small:before { content: '\e80d'; } /* '' */
-.icon-laptop:before { content: '\e800'; } /* '' */
-.icon-network:before { content: '\e808'; } /* '' */
-.icon-table:before { content: '\e803'; } /* '' */
-.icon-off:before { content: '\e80a'; } /* '' */
-.icon-download:before { content: '\e804'; } /* '' */
-.icon-folder:before { content: '\e80f'; } /* '' */
+.icon-videos:before { content: '\e812'; } /* '' */
+.icon-others:before { content: '\e813'; } /* '' */
+.icon-trash:before { content: '\e814'; } /* '' */
+.icon-undo:before { content: '\e815'; } /* '' */
 .icon-folder-open:before { content: '\e816'; } /* '' */
+.icon-pencil:before { content: '\e817'; } /* '' */
+.icon-play:before { content: '\e818';  } /* '' */
+

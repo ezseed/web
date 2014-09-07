@@ -1,4 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+
 body {
+    font-family: 'Noto Sans', sans-serif;
 	background-color: scale-color(#fff, $lightness: -5%);
 }
 
@@ -28,6 +31,13 @@ body {
 	cursor: pointer;
 }
 
+.text-small {
+    font-size: 0.9rem;
+}
+
+h2 {
+    letter-spacing:2px;
+} 
 // .mini.add.active, .mini.add.active {
 
 // 	/*animation-duration*/

@@ -27,3 +27,4 @@ node_modules
 .sass-cache/
 bower_components/
 dist/
+tmp/

@@ -1,0 +1,24 @@
+<div class="columns large-12 ">
+  <div class="row" id="album">
+    <div class="large-9 large-offset-2 columns"> 
+      <div class="row container">
+        <div class="large-2 columns text-center">
+          <img ng-src="{{album.picture || '/img/album/no_cover.jpg'}}" alt="{{album.album}}">
+          <br>
+          <br>
+          <button class="small secondary" ng-style="album.color ? {'background-color': album.color} : ''"><i class="icon-download"></i> Download</button>
+          <button class="small secondary" ng-style="album.color ? {'background-color': album.color} : ''"><i class="icon-play"></i> Listen</button>
+        </div>
+        <div class="large-10 columns">
+          <h2>{{album.artist}} - {{album.album}} <span class="label secondary" ng-style="album.color ? {'background-color': album.color} : ''" ng-if="album.genre">{{album.genre}}</span> <span class="label secondary" ng-style="album.color ? {'background-color': album.color} : ''" ng-if="album.year">{{album.year}}</span>
+          </h2>
+          <ul>
+            <li ng-repeat="song in album.songs">
+              {{song.name}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

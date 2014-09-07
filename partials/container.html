@@ -1,0 +1,8 @@
+<nav ui-view="nav" class="top-bar"></nav>
+
+<div class="row" id="container">
+  <aside ez-scroll class="columns small-12 medium-4 large-2" ui-view="sidebar" id="sidebar" ng-class="{mini: !sidebar}" ></aside>
+  <div class="columns" ng-class="{'no-sidebar': !sidebar, 'small-12 medium-8 large-10': sidebar}">
+    <div ui-view="desktop"></div>
+  </div>
+</div>

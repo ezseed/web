@@ -1,5 +1,49 @@
-<div id="desktop">
-  <div ng-if="displays.thumb" ng-include src="'partials/displays/thumb.html'"></div>
-  <div ng-if="displays.table" ng-include src="'partials/displays/table.html'"></div>
-  <div ng-if="displays.list" ng-include src="'partials/displays/list.html'"></div>
-</div>
+
+    <div id="desktop">
+      <section ng-if="recent.movies.length">
+        <h4 translate>MOVIES</h4>
+
+        <ul class="small-block-grid-4 medium-block-grid-6 large-block-grid-7">
+          <li ng-repeat="item in recent.movies" class="text-center">
+            <a class="th" ui-sref="items.movie({movieId: item._id})">
+              <img ng-src="{{item.infos.picture || '/img/movie/no_cover.jpg'}}" style="min-width:100%;" > 
+              <h5>{{item.infos.title || item.name}} <small ng-if="item.movieType == 'tvseries'">S{{item.season}}</small></h5>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section ng-if="recent.albums.length">
+        <h4 translate>ALBUMS</h4>
+
+        <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
+          <li ng-repeat="item in recent.albums" class="text-center">
+          <a class="th" ui-sref="items.album({albumId: item._id})">
+              <img ng-src="{{item.picture || '/img/album/no_cover.jpg'}}"> 
+              <h5>{{item.artist}} - {{item.album}}</h5>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section ng-if="recent.others.length">
+        <h4 translate>OTHERS</h4>
+        <table>
+          <thead>
+            <tr>
+              <th translate>NAME</th>
+              <th translate>PATH</th>
+              <th>#</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="others in recent.others">
+              <tr ng-repeat="item in others.files">
+                <td>{{item.name}}</td>
+                <td>{{item.path}}</td>
+                <td><a href="others/{{item._id}}/download"><i class="icon-download"></i></a></td>
+              </tr>
+          </tbody>
+        </table>
+      </section>
+      <!-- <div ng&#45;if="displays.thumb" ng&#45;include src="'partials/displays/thumb.html'"></div> -->
+      <!-- <div ng&#45;if="displays.table" ng&#45;include src="'partials/displays/table.html'"></div> -->
+      <!-- <div ng&#45;if="displays.list" ng&#45;include src="'partials/displays/list.html'"></div> -->
+    </div>

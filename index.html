@@ -6,20 +6,14 @@
     <title>ezseed</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
     <link rel="stylesheet" href="dist/css/app.css">
   </head>
   <body ng-app="ezseed" ng-controller="MainCtrl">
       <!--[if lt IE 7]>
           <p class="browsehappy">Ouch</p>
       <![endif]-->
-
-    <nav class="top-bar" ng-include src="'partials/header.html'" ></nav>
-
-    <div class="row" id="container">
-      <aside ez-scroll class="columns small-12 medium-4 large-2" ng-include src="'partials/sidebar.html'" id="sidebar" ng-controller="sidebarCtrl" ng-class="{mini: !sidebar}" ></aside>
-      <div class="columns" ng-class="{'no-sidebar': !sidebar, 'small-12 medium-8 large-10': sidebar}" ng-view></div>
-    </div>
-
+    <ui-view></ui-view>
     <script src="dist/js/vendor.js"></script>
     <script src="dist/js/main.js"></script>
   </body>

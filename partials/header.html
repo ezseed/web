@@ -1,6 +1,6 @@
 <ul class="title-area">
   <li class="name">
-    <h1><a href="#"><span class="red">ez</span>seed</a></h1>
+    <h1><a ui-sref="home.desktop" ><span class="red">ez</span>seed</a></h1>
   </li>
   <!-- Responsive menu -->
   <!-- <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li> -->
@@ -9,18 +9,19 @@
 <section class="top-bar-section">
   <!-- Right Nav Section -->
   <ul class="right">
-    <li class="has-dropdown" dropdown-toggle="#profile">
-      <a href="#">soyuka</a>
+    <li class="has-dropdown">
+      <a href="#" dropdown-toggle="#profile">{{user.username}}</a>
       <ul class="f-dropdown" id="profile">
         <li><a href="#">Settings</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a ng-click="resetLibrairy($event)"><i class="icon-undo"></i>Reset</a></li>
+        <li><a ui-sref="logout" target="_self">Logout</a></li>
       </ul>
     </li>
   </ul>
 
   <!-- Left Nav Section -->
   <ul class="left">
-    <li><a href="#"><i class="icon-home"></i> Desktop</a></li>
-    <li><a href="#"><i class="icon-network"></i> Torrents</a></li>
+    <li><a ui-sref="home.desktop"><i class="icon-home"></i> Desktop</a></li>
+    <li><a ui-sref="#!/torrent"><i class="icon-network"></i> Torrents</a></li>
   </ul>
 </section>

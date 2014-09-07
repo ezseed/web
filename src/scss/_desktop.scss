@@ -3,61 +3,69 @@ $item-border-color: 1px solid scale-color($white, $lightness:-11%);
 #desktop {
 	margin-top: 20px;
 
-	.item {
-		border-bottom: $item-border-color;
-		position: relative;
+    section {
+        border-bottom: $item-border-color;
+    }
+	// .item {
+	// 	border-bottom: $item-border-color;
+	// 	position: relative;
+    //
+	// 	.poster {
+	// 		margin-top: 10px;
+	// 	}
+    //
+	// 	.poster, .content {
+	// 		padding-bottom: 10px;
+	// 		margin-bottom: 10px;
+	// 	}
+    //
+	// 	.show-files {
+	// 		position: absolute;
+	// 		right: 0;
+	// 		top: -2rem;
+	// 		z-index: 1;
+	// 	}
+    //
+	// 	.files {
+	// 		border: 0;
+	// 		border-top: $item-border-color;
+	// 		margin-bottom: 0;
+    //
+	// 	}
+	// }
+    //
+	// .thumbs {
+    //
+	// 	  @include block-grid(
+	// 	    // This controls how many elements will be on each row of the block grid. Set this to whatever number you need, up to the max allowed in the variable.
+	// 	    // Available options: 1-12 by default, and false.
+	// 	    $per-row: false,
+    //
+	// 	    // This controls how much space is between each item in the block grid.
+	// 	    // Use a variable or any pixel or em values.
+	// 	    $spacing: $block-grid-default-spacing,
+    //
+	// 	    // This controls whether or not base styles come through, set to false to leave out.
+	// 	    $base-style: true
+	// 	  );
+    //
+	// 	.item {
+	// 		text-align: center;
+	// 		border-bottom: 0;
+    //
+	// 		max-width: 50%;
+	// 	}
+	// }
+}
 
-		.poster {
-			margin-top: 10px;
-		}
-
-		.poster, .content {
-			padding-bottom: 10px;
-			margin-bottom: 10px;
-		}
-
-		.show-files {
-			position: absolute;
-			right: 0;
-			top: -2rem;
-			z-index: 1;
-		}
-
-		.files {
-			border: 0;
-			border-top: $item-border-color;
-			margin-bottom: 0;
-
-		}
-	}
-
-	.thumbs {
-
-		  @include block-grid(
-		    // This controls how many elements will be on each row of the block grid. Set this to whatever number you need, up to the max allowed in the variable.
-		    // Available options: 1-12 by default, and false.
-		    $per-row: false,
-
-		    // This controls how much space is between each item in the block grid.
-		    // Use a variable or any pixel or em values.
-		    $spacing: $block-grid-default-spacing,
-
-		    // This controls whether or not base styles come through, set to false to leave out.
-		    $base-style: true
-		  );
-
-		.item {
-			text-align: center;
-			border-bottom: 0;
-
-			max-width: 50%;
-		}
-	}
+table {
+    width: 100%;
 }
 
 .no-sidebar {
 	@include grid-column($columns:12);
 }
+
 @media #{$medium-up} {
 	.no-sidebar {
 	  @include calc(width, '100% - 60px');

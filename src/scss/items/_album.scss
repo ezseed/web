@@ -1,0 +1,19 @@
+#album {
+    background:#1f1f1f url('/img/album/backdrop.png') no-repeat right top;
+    background-attachment:fixed;
+    min-height: 100vh;
+    color: $white;
+    h1, h2, h3, h4, h5, h6 {
+        color: inherit !important;
+    }
+}
+
+#album .container {
+    background: rgba(31, 31, 31, 0.75);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+#album h2 .label {
+    vertical-align: 10px;
+}

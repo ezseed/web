@@ -32,7 +32,11 @@
     "angular-translate-handler-log": "~2.0.1",
     "angular-translate-loader-url": "~2.2.0",
     "color-thief": "*",
-    "checklist-model": "~0.1.3"
+    "checklist-model": "~0.1.3",
+    "angular-sanitize": "~1.2.23",
+    "moment": "~2.8.3",
+    "mousetrap": "~1.4.6",
+    "angular-socket-io": "~0.6.0"
   },
   "overrides": {
     "foundation": {

@@ -29,6 +29,7 @@ gulp.task('bower', function() {
     })
   )
     .pipe(add('bower_components/modernizr/modernizr.js'))
+    .pipe(add('bower_components/mousetrap/mousetrap.js'))
     .pipe(concat('vendor.js'))
     // .pipe(uglify())
     .pipe(gulp.dest('./dist/js'))

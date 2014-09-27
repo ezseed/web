@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fontello';
-  src: url('../../fonts/fontello.eot?45462382');
-  src: url('../../fonts/fontello.eot?45462382#iefix') format('embedded-opentype'),
-       url('../../fonts/fontello.svg?45462382#fontello') format('svg'),
-       url('../../fonts/fontello.woff?45462382') format('woff'),
-       url('../../fonts/fontello.ttf?45462382') format('truetype');
+  src: url('../../font/fontello.eot?45462382');
+  src: url('../../font/fontello.eot?45462382#iefix') format('embedded-opentype'),
+       url('../../font/fontello.svg?45462382#fontello') format('svg'),
+       url('../../font/fontello.woff?45462382') format('woff'),
+       url('../../font/fontello.ttf?45462382') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,7 +14,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../../fonts/fontello.svg?45462382#fontello') format('svg');
+    src: url('../../font/fontello.svg?45462382#fontello') format('svg');
   }
 }
 
@@ -50,7 +50,7 @@
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
-
+ 
 .icon-laptop:before { content: '\e800'; } /* '' */
 .icon-home:before { content: '\e801'; } /* '' */
 .icon-check:before { content: '\e802'; } /* '' */
@@ -75,5 +75,16 @@
 .icon-undo:before { content: '\e815'; } /* '' */
 .icon-folder-open:before { content: '\e816'; } /* '' */
 .icon-pencil:before { content: '\e817'; } /* '' */
-.icon-play:before { content: '\e818';  } /* '' */
+.icon-play:before { content: '\e818'; } /* '' */
+.icon-search:before { content: '\e819'; } /* '' */
+.icon-play-small:before { content: '\e81a'; } /* '' */
+.icon-vlc:before { content: '\e81b'; } /* '' */
+.icon-stop:before { content: '\e81c'; } /* '' */
+.icon-pause:before { content: '\e81d'; } /* '' */
+.icon-shuffle:before { content: '\e81e'; } /* '' */
+.icon-loop:before { content: '\e81f'; } /* '' */
+.icon-to-end:before { content: '\e820'; } /* '' */
+.icon-to-start:before { content: '\e821'; } /* '' */
+.icon-volume-off:before { content: '\e822';  } /* '' */
+.icon-volume-up:before { content: '\e823';  } /* '' */
 

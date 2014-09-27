@@ -1,6 +1,6 @@
 <ul class="title-area">
   <li class="name">
-    <h1><a ui-sref="home.desktop" ><span class="red">ez</span>seed</a></h1>
+  <h1><a ui-sref="home.desktop" ng-class="{'loading': loading}" data-hover="ezseed"><span class="red">ez</span>seed</a></h1>
   </li>
   <!-- Responsive menu -->
   <!-- <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li> -->
@@ -9,19 +9,37 @@
 <section class="top-bar-section">
   <!-- Right Nav Section -->
   <ul class="right">
+    <li class="has-form">
+      <div class="row collapse">
+        <div class="large-10 small-11 columns">
+          <input type="text" id="search" ng-keyup="search($event)" placeholder="{{'SHORTCUT.SEARCH' | translate}}">
+        </div>
+        <div class="large-2 small-1 columns">
+          <button class="alert small"><i class="icon-search"></i></button>
+        </div>
+      </div>
+    </li>
+    <li class="divider"></li>
     <li class="has-dropdown">
-      <a href="#" dropdown-toggle="#profile">{{user.username}}</a>
+      <a href="#" dropdown-toggle="#profile">{{user.username}} ({{user.role}})</a>
       <ul class="f-dropdown" id="profile">
-        <li><a href="#">Settings</a></li>
-        <li><a ng-click="resetLibrairy($event)"><i class="icon-undo"></i>Reset</a></li>
-        <li><a ui-sref="logout" target="_self">Logout</a></li>
+        <li><a ui-sref="settings" translate>SETTINGS</a></li>
+        <li ng-if="user.role == 'admin'"><a ui-sref="admin" translate>ADMINISTRATION</a></li>
+        <li><a ng-click="refreshLibrairy($event)"><i class="icon-undo"></i>{{'REFRESH' | translate}}</a></li>
+        <!-- <li><a ng&#45;click="resetLibrairy($event)"><i class="icon&#45;undo"></i>Reset</a></li> -->
+        <li><a ui-sref="logout" target="_self" translate>LOGOUT</a></li>
       </ul>
     </li>
   </ul>
 
   <!-- Left Nav Section -->
   <ul class="left">
-    <li><a ui-sref="home.desktop"><i class="icon-home"></i> Desktop</a></li>
+    <li class="divider"></li>
     <li><a ui-sref="#!/torrent"><i class="icon-network"></i> Torrents</a></li>
+    <li class="divider"></li>
+    <li><a ui-sref="home.type({type: 'movies'})"><i class="icon-videos"></i> <span translate="MOVIES"></span></a></li>
+    <li><a ui-sref="home.type({type: 'albums'})"><i class="icon-albums"></i> <span translate="ALBUMS"></span></a></li>
+    <li><a ui-sref="home.type({type: 'others'})"><i class="icon-others"></i> <span translate="OTHERS"></span></a></li>
   </ul>
 </section>
+

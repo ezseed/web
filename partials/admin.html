@@ -1,0 +1,89 @@
+<div id="alert" ng-if="alert" class="alert-box {{alert.type}}">{{alert.message}} <a ng-click="closeAlert()" class="close">&times;</a></div>
+
+<nav ui-view="nav" class="top-bar"></nav>
+
+<div class="row">
+  <div class="columns large-12">
+    <h2><span translate="LIBRAIRIES"></span> <button class="small right secondary" ng-click="togglePath()" style="margin-top:10px" translate="NEW"></button>
+    </h2>
+    <form ng-submit="createPath()" ng-if="new" class="row collapse" ng-controller="adminNewPathCtrl">
+      <div class="columns large-10">
+        <input name="path" type="text" ng-model="path.path" ng-class="{'error': path.error}" ng-keydown="isValidPath($event)" placeholder="Enter a path">
+        <small class="error" ng-if="path.error" translate="NO_PATH"></small>
+      </div>
+      <div class="columns large-1">
+        <button class="small postfix secondary" type="submit" translate="SAVE"></button>
+      </div>
+      <div class="columns large-1">
+        <button class="small postfix" type="reset" ng-click="togglePath()" translate="CANCEL"></button>
+      </div>
+    </form>
+    <table>
+      <tr><th translate="PATH"></th><th translate="LAST_UPDATED"></th><th class="text-center" ng-repeat="user in users">{{user.username}}</th><th translate="ACTIONS"></th></tr>
+      <tr ng-repeat="path in paths">
+        <td>
+          <form ng-submit="updatePath($index, path)" ng-if="edit[$index]" class="row collapse" ng-controller="adminUpdatePathCtrl">
+            <div class="columns large-8">
+              <input name="path" type="text" ng-model="path.path" ng-class="{'error': path.error}" ng-keydown="isValidPath($event, path)">
+              <small class="error" ng-if="path.error" translate="NO_PATH"></small>
+            </div>
+            <div class="columns large-2">
+              <button class="postfix small secondary" type="submit" translate="UPDATE"></button>
+            </div>
+            <div class="columns large-2">
+              <button class="postfix small" ng-click="cancelPath($index)" type="reset" translate="CANCEL"></button>
+            </div>
+          </form>
+          <span ng-if="!edit[$index]">{{path.path}}</span>
+        </td>
+        <td>{{path.dateUpdated | prettyDate}}</td>
+        <td ng-repeat="user in users" class="text-center" ng-bind-html="isWatching(user, path)" ng-click="watch(user, path)" ng-class="{pointer: user.default_path !== path._id}"></td> 
+        <td><a ng-click="editPath($index, path)"><i class="icon-pencil pointer"></i></a> <a ng-click="deletePath(path._id)"><i class="icon-trash pointer"></i></a></td>
+      </tr>
+    </table>
+
+
+    <h2 translate="USERS"></h2>
+    <table ng-controller="adminUserCtrl">
+      <tr><th translate="USERNAME"></th><th translate="DEFAULT_PATH"></th><th translate="SPACE_LEFT"></th><th translate="ROLE"></th><th translate="ACTIONS"></th></tr>
+      <tr ng-repeat="user in users">
+        <td>{{user.username}}</td> 
+        <td>
+          <span ng-if="!editing[$index]" ng-bind="getPath(user.default_path)"></span>
+          <select ng-if="editing[$index]" ng-model="user.default_path">
+            <option ng-repeat="path in paths" ng-selected="path._id.toString() == user.default_path" ng-value="path._id">{{path.path}}</option>
+          </select>
+        </td>
+        <td>
+          <span ng-if="!editing[$index]">{{user.spaceLeft | prettyBytes}}</span>
+          <span ng-if="editing[$index]">
+            <div class="row collapse">
+              <div class="large-8 columns">
+                <input type="range" min="1000000000" max="2000000000000" ng-model="user.spaceLeft" step="1000000000">
+              </div>
+              <div class="large-4 columns text-right">
+                {{user.spaceLeft | prettyBytes}}
+              </div>
+            </div>
+          </span>
+        </td>
+        <td>
+          <select ng-if="editing[$index]" ng-model="user.role">
+            <option ng-selected="user.role  == 'admin'" value="admin" translate="admin"></option>
+            <option ng-selected="user.role  == 'user'" value="user" translate="user"></option>
+          </select>
+          <span ng-if="!editing[$index]">{{user.role | translate}}</span>
+        </td>
+        <td>
+          <a ng-if="!editing[$index]" ng-click="edit($index, user)"><i class="icon-pencil pointer"></i></a>
+          <span ng-if="editing[$index]" >
+            <ul class="button-group">
+              <li><a ng-click="save($index, user)"><button class="small secondary" translate="SAVE"></button></a></li>
+              <li><a ng-click="cancel($index)"><button class="small" translate="CANCEL"></button></a></li>
+            </ul>
+          </span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

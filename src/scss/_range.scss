@@ -1,0 +1,62 @@
+
+input[type="range"] {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  width: 70px;
+  display: inline-block;
+  height: 10px;
+  margin: 0;
+  border: none;
+  padding: 1px 2px;
+  border-radius: 14px;
+  background: #232528;
+  box-shadow: inset 0 1px 0 0 #0d0e0f, inset 0 -1px 0 0 #3a3d42;
+  -webkit-box-shadow: inset 0 1px 0 0 #0d0e0f, inset 0 -1px 0 0 #3a3d42;
+  outline: none; /* no focus outline */
+}
+
+input[type="range"]::-moz-range-track {
+  border: inherit;
+  background: transparent;
+}
+
+input[type="range"]::-ms-track {
+  border: inherit;
+  color: transparent; /* don't drawn vertical reference line */
+  background: transparent;
+}
+
+input[type="range"]::-ms-fill-lower,
+input[type="range"]::-ms-fill-upper {
+  background: transparent;
+}
+
+input[type="range"]::-ms-tooltip {
+  display: none;
+}
+
+@mixin range-width() {
+  width: 10px;
+  height: 8px;
+  border: none;
+  border-radius: 12px;
+}
+
+/* thumb */
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @include range-width();
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $slider-color), color-stop(100%, $slider-darker-color)); /* android <= 2.2 */
+  background-image: -webkit-linear-gradient(top , $slider-color 0, $slider-darker-color 100%); /* older mobile safari and android > 2.2 */;
+  background-image: linear-gradient(to bottom, $slider-color 0, $slider-darker-color 100%); /* W3C */
+}
+input[type="range"]::-moz-range-thumb {
+  @include range-width();
+  background-image: linear-gradient(to bottom, $slider-color 0, $slider-darker-color 100%); /* W3C */
+}
+
+input[type="range"]::-ms-thumb {
+  @include range-width();
+  background-image: linear-gradient(to bottom, $slider-color 0, $slider-darker-color 100%); /* W3C */
+}

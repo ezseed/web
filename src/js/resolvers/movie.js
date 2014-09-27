@@ -34,8 +34,7 @@ function MovieResolver($stateParams, $http, $q, $colorThief) {
 
     if(data.infos.picture) {
       $colorThief(data.infos.backdrop || data.infos.picture).then(function(colors) {
-        var color = colors[0].join(',')
-        data.color = 'rgb('+color+')'
+        data.color = colors[0]
 
         defer.resolve(data)
       })

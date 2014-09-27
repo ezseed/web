@@ -1,9 +1,16 @@
 angular.module('ezseed')
-.controller('DesktopCtrl', function($scope, $localStorage, $log, recent) {
-  $scope.recent = recent
-  $log.debug('Recent: ', recent)
+.factory('$socket', function(socketFactory) {
+  return socketFactory({prefix: ''})
+})
+.controller('DesktopCtrl', function($scope, $stateParams, $rootScope, recent, $recent, $loaderService, $socket) {
+  $rootScope.recent = recent
 
-  // $scope.$watch('show_files', function(newValue, oldValue) {
-  //   console.log(newValue, oldValue)
-  // })
+  $socket.on('update', function(update) {
+    $recent($stateParams.type, $rootScope.search.params).then(function(data) {
+      $rootScope.recent = data 
+    })
+  })
+
+  //notify that watcher is working
+  $socket.on('watching', $loaderService.load)
 })

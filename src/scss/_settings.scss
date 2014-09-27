@@ -62,11 +62,16 @@ $purple: #524656;
 $red: #CF4647;
 
 $primary-color: #EB7B59;
+
 $secondary-color: #A7C5BD;
 $tertiary-color: $red;
 
 $alert-color: #CF4647;
-// $success-color: #43AC6A;
+$success-color: #43AC6A;
+$info-color: $purple;
+
+$slider-color: $white;
+$slider-darker-color: scale-color($slider-color, $lightness: 30%);
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
 
@@ -953,12 +958,12 @@ $button-sml: rem-calc(6);
 // $side-nav-list-margin: rem-calc(0 0 7 0);
 
 // We use these to control link styles.
-// $side-nav-link-color: $primary-color;
-// $side-nav-link-color-active: scale-color($side-nav-link-color, $lightness: 30%);
-// $side-nav-link-color-hover: scale-color($side-nav-link-color, $lightness: 30%);
+$side-nav-link-color: $primary-color;
+$side-nav-link-color-active: scale-color($side-nav-link-color, $lightness: -20%);
+$side-nav-link-color-hover: scale-color($side-nav-link-color, $lightness: -20%);
 // $side-nav-font-size: rem-calc(14);
 // $side-nav-font-weight: normal;
-// $side-nav-font-weight-active: $side-nav-font-weight;
+$side-nav-font-weight-active: 'bold';
 // $side-nav-font-family: $body-font-family;
 // $side-nav-active-font-family: $side-nav-font-family;
 

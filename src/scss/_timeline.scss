@@ -177,8 +177,9 @@ $bg: rgba(31, 31, 31, 0.75);
         }
       }
       & ~ .content {
-        max-height: 250px;
-        overflow: auto;
+        // max-height: 250px;
+        max-height: 300px;
+        // overflow: auto;
         // border-color: $white;
         @if $vertical {
           margin-right: 20px;
@@ -190,12 +191,19 @@ $bg: rgba(31, 31, 31, 0.75);
         }
         p {
           max-height: 200px;
+          overflow: auto;
           color: $white;
           transition: color 0.3s linear 0.3s;
         }
       }
     }
 
+    .radio.viewed:checked {
+
+        & + .relative {
+            .circle { background: $success-color; }
+        }
+    }
     /* -------------------------------------
      * mobile phones (vertical version only)
      * ------------------------------------- */

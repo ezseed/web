@@ -1,10 +1,36 @@
 {
   "MOVIES": "Movies",
+  "SERIES": "Series",
   "ALBUMS": "Albums",
   "OTHERS": "Others",
-  "LIBRARIES": "Libraries",
+  "LIBRAIRIES": "Librairies",
   "DISK_USAGE": "Disk usage",
   "FILTERS": "Filters",
   "NAME": "Name",
-  "PATH": "Path"
+  "PATH": "Path",
+  "SAVE": "Save",
+  "EDIT": "Edit",
+  "NEW": "New",
+  "UPDATE": "Update",
+  "CANCEL": "Cancel",
+  "ACTIONS": "Actions",
+  "ROLE": "Role",
+  "USERNAME": "Username",
+  "USERS": "Users",
+  "LAST_UPDATED": "Last updated",
+  "DEFAULT_PATH": "Default path",
+  "SPACE_LEFT": "Space left",
+  "SIZE": "{{size}} out of {{total}}",
+  "NO_PATH": "Whoops, path doesn't exists",
+  "DOWNLOAD": "Download",
+  "SETTINGS": "Settings",
+  "ADMINISTRATION": "Administration",
+  "LOGOUT": "Log out",
+  "REFRESH": "Refresh",
+  "admin": "Admin",
+  "user": "User",
+  "LANG": "Language", 
+  "SHORTCUT": {
+    "SEARCH": "Press / to search"
+  }
 }

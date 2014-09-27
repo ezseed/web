@@ -1,40 +1,56 @@
-<div style="background:url({{movie.infos.backdrop}}) no-repeat;background-attachment:fixed;min-height: 100vh">
+<dynamic-background color="bgColor"></dynamic-background>
+<div id="movie" style="background:url({{movie.infos.backdrop}}) no-repeat;background-attachment:fixed;min-height: 100vh;background-size: cover;">
   <div id="timeline-container">
-    <div class="row" id="movie">
-      <div class="large-2 columns">
+    <div class="row" ng-show="video">
+      <div class="columns large-12" id="video_container"></div>
+      <div class="columns large-8 end large-offset-2">
+        <div class="row collapse">
+          <div class="small-3 large-2 columns">
+            <span class="prefix" ng-click="selectVideoLink()"><i class="icon-vlc"></i>VLC</span>
+          </div>
+          <div class="small-9 large-10 columns">
+            <input type="text" id="video_link" onclick="select(this)" readonly value="{{video.direct_link}}">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-2 columns" >
         <img ng-src="{{movie.infos.picture || '/img/movie/no_cover.jpg'}}" alt="{{movie.name}}">
       </div>
       <div class="large-10 columns">
         <h2>{{movie.infos.title || movie.name}} <small ng-if="movie.movieType == 'tvseries'">S{{movie.season}}</small> <i class="icon-pencil text-small"></i></h2>
         <p>{{movie.infos.synopsis}}</p>
-        <span class="label secondary" ng-style="movie.color ? {'background-color': movie.color} : ''" ng-if="movie.language">{{movie.language}}</span>
-        <span class="label secondary" ng-style="movie.color ? {'background-color': movie.color} : ''" ng-if="movie.subtitles">{{movie.subtitles}}</span>
-        <span class="label secondary" ng-style="movie.color ? {'background-color': movie.color} : ''" ng-if="movie.quality">{{movie.quality}}</span>
-        <span class="label secondary" ng-style="movie.color ? {'background-color': movie.color} : ''" ng-if="movie.format">{{movie.format}}</span>
-        <span class="label secondary" ng-style="movie.color ? {'background-color': movie.color} : ''" ng-if="movie.audio">{{movie.audio}}</span>
+        <span class="label secondary" ng-if="movie.language">{{movie.language}}</span>
+        <span class="label secondary" ng-if="movie.subtitles">{{movie.subtitles}}</span>
+        <span class="label secondary" ng-if="movie.quality">{{movie.quality}}</span>
+        <span class="label secondary" ng-if="movie.format">{{movie.format}}</span>
+        <span class="label secondary" ng-if="movie.audio">{{movie.audio}}</span>
       </div>
     </div>
     <ul id='timeline'>
       <li class='work' ng-repeat="video in movie.videos">
-        <input class='radio' id='work{{video._id}}' name='works' type='radio'>
+        <input class='radio' id='work{{video._id}}' ng-class="{viewed: video.viewed}" name='works' type='radio' ng-checked="$first">
         <div class="relative">
-          <label for='work{{video._id}}'>{{video.name}} S{{movie.season}}E{{video.specific.episode}}</label>
+          <label for='work{{video._id}}'>{{video.name}} - S{{movie.season}}E{{video.specific.episode}}</label>
           <span class='date'>{{video.air_date || ""}}</span>
           <span class='circle'></span>
         </div>
         <div class='content'>
           <div class="row">
-            <div class="large-4 columns play-me">
-              <img ng-src="{{video.picture}}" ng-if="video.picture" alt="{{video.name}}">
+            <div class="large-4 columns play-me" ng-click="play(video)">
+              <img ng-if="video.picture" ng-src="{{video.picture}}" alt="{{video.name}}">
             </div>
-            <div class="large-8 columns" ng-if="video.synopsis">
+            <div class="large-8 columns" style="overflow:auto" ng-if="video.synopsis">
+              <p>
               {{video.synopsis}}
+              </p>
              </div>
              <div class="large-12 columns">
-               <button class="small secondary" ng-style="movie.color ? {'background-color': movie.color} : ''"><i class="icon-download"></i> Download</button>
-               <button class="small secondary" ng-style="movie.color ? {'background-color': movie.color} : ''"><i class="icon-play"></i> Play</button>
              </div>
            </div>
+           <a href="/movies/{{video._id}}/download" class="button small secondary"><i class="icon-download"></i> Download</a>
+           <button class="small secondary" ng-click="play(video)"><i class="icon-play"></i> Play</button>
         </div>
       </li>
     </ul>

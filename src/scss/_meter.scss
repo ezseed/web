@@ -53,7 +53,7 @@ meter::-webkit-meter-optimum-value:hover {
                                      #EB7B59 33%,
                                      #EB7B59 66%,
                                      #CF4647 66%,
-                                     #CF4647 100%);
+                                     #CF4647 100%)!important;
   transition: width .5s;
   width: 100% !important; // !important keyword used to override the inline style in ebkit browsers.
 }

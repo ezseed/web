@@ -3,9 +3,9 @@
 *
 * Description
 */
-angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 'ui.router', 'pascalprecht.translate', 'checklist-model'])
+angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 'ui.router', 'pascalprecht.translate', 'checklist-model', 'ngSanitize', 'btford.socket-io'])
 .config(function($locationProvider, $logProvider, $urlRouterProvider, $stateProvider, $translateProvider, $httpProvider) {
-  //no debug
+  //enable debug
   $logProvider.debugEnabled(true)
 
   $httpProvider.interceptors.push('httpInterceptor');
@@ -16,13 +16,45 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
   $translateProvider.useUrlLoader('locales.json')
 
   $translateProvider.preferredLanguage('en_US')
+  moment.locale('en')
 
   $urlRouterProvider.otherwise("/login")
 
   $stateProvider
+  .state('login', {
+    url: '/login',
+    templateUrl: 'partials/login.html',
+    controller: 'LoginCtrl'
+  })
+  .state('logout', {
+    url: '/logout',
+    controller: function($localStorage, $state) {
+      delete $localStorage.user
+      $state.transitionTo('login', {}, { 
+        reload: true, inherit: false, notify: true 
+      })
+    }
+  })
   .state('admin', {
     url: '/admin',
-    template: 'Hello'
+    views: {
+      '': {
+        templateUrl: 'partials/admin.html',
+        controller: 'adminCtrl',
+      },
+      'nav@admin': {templateUrl: 'partials/header.html', controller: 'NavCtrl'} 
+    },
+    resolve: AdminResolver()
+  })
+  .state('settings', {
+    url: '/settings',
+    views: {
+      '': {
+        templateUrl: 'partials/settings.html',
+        controller: 'settingsCtrl',
+      },
+      'nav@settings': {templateUrl: 'partials/header.html', controller: 'NavCtrl'} 
+    }
   })
   .state('home', {
     abstract: true,
@@ -84,15 +116,8 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
         templateUrl: 'partials/desktop.html', 
         controller: 'DesktopCtrl',
         resolve: {
-          recent: function($http, $q, $stateParams) {
-
-            var defer = $q.defer()
-
-            $http.get('api/-/files', {params: {type: $stateParams.type, sort: '-dateAdded'}}).success(function(data){
-              defer.resolve(data) 
-            })
-
-            return defer.promise
+          recent: function($recent, $stateParams) {
+            return $recent($stateParams.type)
           },
         }
       },
@@ -129,23 +154,16 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
       } 
     },
   })
-  .state('login', {
-    url: '/login',
-    templateUrl: 'partials/login.html',
-    controller: 'LoginCtrl'
-  })
-  .state('logout', {
-    url: '/logout',
-    controller: function($localStorage, $location, $window, $rootScope) {
-      delete $localStorage.user
-      $location.path('/login')
-    }
-  })
 
   $locationProvider.html5Mode(false).hashPrefix('!')
 
 })
-.run(function($http, $localStorage) {
-  if($localStorage.user)
+.run(function($http, $localStorage, $rootScope, $stateParams, $translate) {
+  if($localStorage.user) {
     $http.defaults.headers.common.Authorization = 'Bearer '+$localStorage.user.token
+    $translate.use($localStorage.user.lang)
+  }
+
+  $rootScope.$stateParams = $stateParams
+  $rootScope.search = {params: {}, query: {}}
 })

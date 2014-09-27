@@ -1,9 +1,9 @@
 
     <div id="desktop">
-      <section ng-if="recent.movies.length">
-        <h4 translate>MOVIES</h4>
+      <section ng-if="recent.movies | count">
+        <h4 translate>{{search.params.movieType == 'tvseries' ? 'SERIES' : 'MOVIES'}}</h4>
 
-        <ul class="small-block-grid-4 medium-block-grid-6 large-block-grid-7">
+        <ul class="small-block-grid-4 medium-block-grid-6 large-block-grid-7" ng-if="search.params.movieType !== 'tvseries'">
           <li ng-repeat="item in recent.movies" class="text-center">
             <a class="th" ui-sref="items.movie({movieId: item._id})">
               <img ng-src="{{item.infos.picture || '/img/movie/no_cover.jpg'}}" style="min-width:100%;" > 
@@ -11,6 +11,19 @@
             </a>
           </li>
         </ul>
+        <div ng-if="search.params.movieType === 'tvseries'" class="row">
+          <div ng-controller="tvshowController" ng-repeat="(index, tvshow) in recent.movies track by $index" ng-style="tvshow.style" ng-init="numCols = countShows(tvshow.shows)" class="large-{{numCols}} columns" >
+            <ul class="large-block-grid-{{numBlock}}">
+              <h5>{{tvshow.name}}</h5>
+              <li ng-repeat="item in tvshow.shows" class="text-center">
+                <a class="th" ui-sref="items.movie({movieId: item._id})">
+                  <img ng-src="{{item.infos.picture || '/img/movie/no_cover.jpg'}}" style="min-width:100%;" > 
+                  <h5>{{item.infos.title || item.name}} <small ng-if="item.movieType == 'tvseries'">S{{item.season}}</small></h5>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
       <section ng-if="recent.albums.length">
         <h4 translate>ALBUMS</h4>

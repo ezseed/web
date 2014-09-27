@@ -20,13 +20,14 @@ function AlbumResolver($stateParams, $http, $q, $colorThief) {
         defer.resolve(data)
       } else {
         $colorThief(data.picture).then(function(colors) {
-          var color = colors[0].join(',')
-          data.color = 'rgb('+color+')'
+          data.color = colors[0] 
           defer.resolve(data)
         })
 
       }
 
+    } else {
+      defer.resolve(data)
     }
   })
 

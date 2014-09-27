@@ -1,14 +1,16 @@
 aside {
 
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 	height: auto;
 	color: #333333;
 	border-right: 1px solid scale-color($white, $lightness:-11%);
 	background-color: $white;
 	overflow: hidden;
 
-	h5 {
+	h5:not(:first-child) {
 		margin-top: 20px;
-  }
+      }
 
 	.button-checkbox {
 		width: 100%;

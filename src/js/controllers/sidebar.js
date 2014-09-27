@@ -1,12 +1,21 @@
 angular.module('ezseed')
-.controller('sidebarCtrl', function($scope, $http, paths, size, $log) {
-  
+.controller('sidebarCtrl', function($scope, $http, paths, size, $log, $rootScope, $recent, $stateParams, $translate) {
+
   $scope.paths = paths
   $log.debug('paths: ', paths)
 
   $scope.size = size
   $log.debug('size: ', size)
 
+  $scope.usageDetails = {
+    size: size.total.pretty,
+    total: $scope.user.prettySize
+  }
+
+  $scope.array_colors = ['#A7C5BD', '#EB7B59','#CF4647']
+  $scope.array_sizes = [size.albums.percent, size.movies.percent, size.others.percent]
+
+  //TODO
   $scope.watched_paths = []
 
   $scope.$watchCollection('watched_paths', function(newVal, oldVal) {
@@ -16,46 +25,22 @@ angular.module('ezseed')
   })
 
   $scope.choose = function(type) {
-    return function(key, reset) {
-      $scope[type][key] = !$scope[type][key]
+    return function(params) {
 
-      //checkbox is now an <option> - reset others
-      if(reset) {
-
-        for(var i in $scope[type]) {
-          //reset is an array of option keys
-          if(reset instanceof Array && i !== key && reset.indexOf(i) !== -1) {
-            $scope[type][i] = false
-          } else if(typeof reset == 'boolean' && i !== key) {
-            $scope[type][i] = false
-          }
-
+      for(var i in params) {
+        if(params[i] == $rootScope.search.params[i]) {
+          $rootScope.search.params[i] = null
+        } else {
+          $rootScope.search.params[i] = params[i]
         }
       }
 
+      $rootScope.recent = {}
+      $recent($stateParams.type, $rootScope.search.params).then(function(data) {
+        $rootScope.recent = data
+      })
     }
   }
 
-  $scope.reset = function(type) {
-    return function() {
-      for(var i in $scope[type]) {
-        $scope[type][i] = false
-      }
-    }
-  }
-
-  $scope.enabled = function(type) {
-    return function() {
-      var result = false
-
-      for(var i in $scope[type]) {
-        if($scope[type][i]) {
-          result = true
-          break;
-        }
-      }
-      return result
-    }
-  }
 })
 

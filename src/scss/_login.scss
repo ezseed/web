@@ -1,20 +1,25 @@
 .login-container {
-  display: table;
-  width: 100%;
-  min-height: 100%;
+  // display: table;
+  // width: 100%;
+  // min-height: 100%;
 }
 
 .login-col {
-    display: table-cell;
-    vertical-align: middle;
+    // display: table-cell;
+    // vertical-align: middle;
 }
 .form {
+    position: absolute;
+    height:200px;
+    top: 50%;
+    left:50%;
+    margin-left: -150px;
+    margin-top:-100px;
     /* Size and position */
     // margin: 140px auto 30px;
-    margin: -150px auto 0;
+    // margin: -150px auto 0;
     width: 300px;
     padding: 10px;
-    position: relative;
     /* Font styles */
     color: white;
     text-shadow: 0 2px 1px rgba(0,0,0,0.3);

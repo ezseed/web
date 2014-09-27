@@ -5,10 +5,56 @@ body {
 	background-color: scale-color(#fff, $lightness: -5%);
 }
 
+#alert {
+    position: fixed;
+    z-index: 1;
+    right: 10px;
+    width: 300px;
+    bottom: 0px;
+}
+
+#alert.ng-enter {
+    animation: bounceInDown 1s;
+}
+
+#alert.ng-leave {
+    animation: fadeOutRight 1s;
+}
+
 .top-bar-section ul.f-dropdown li {
 	float: none;
 }
-.top-bar .name h1 a { color: $primary-color; }
+.top-bar .name h1 a { 
+    color: $primary-color; 
+
+    &:before {
+        position: absolute;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 0;
+        color: $alert-color;
+        content: attr(data-hover);
+        transition: width 1s;
+        -webkit-font-smoothing: antialiased;
+     }
+
+     &:hover:before {
+         width:100%;
+     }
+
+     &.loading:before {
+         animation: fill 1.5s infinite;
+     }
+}
+
+.top-bar .has-form button {
+    padding-bottom: 0.52rem;
+}
+
+@keyframes fill {
+    50%  { width: 100%  }
+    100% { width: 0%    }
+}
 
 #container {
 	max-width: 100%;
@@ -38,6 +84,8 @@ body {
 h2 {
     letter-spacing:2px;
 } 
+
+.small.postfix { padding-top: 0; }
 // .mini.add.active, .mini.add.active {
 
 // 	/*animation-duration*/

@@ -1,7 +1,6 @@
 # Logs
 logs
 *.log
-
 # Runtime data
 pids
 *.pid
@@ -27,4 +26,4 @@ node_modules
 .sass-cache/
 bower_components/
 dist/
-tmp/
+tmp

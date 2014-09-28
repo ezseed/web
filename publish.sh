@@ -10,15 +10,17 @@ if [[ -z $version ]]; then
 fi
 
 echo $version
-new=npm version $version
+new=$(npm version $version)
 
 git push --tags
 
 # npm publish
 
-# git reset HEAD
-#
-# git checkout master
+git reset HEAD~2
+
+git checkout master
+
+git branch -D tag-branch
 #
 # git add package.json
 #

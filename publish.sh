@@ -16,12 +16,12 @@ git push --tags
 
 # npm publish
 
-git reset HEAD~2
-
-git checkout master
-
-git add package.json
-
-git commit -m "$new"
-
-git push
+# git reset HEAD
+#
+# git checkout master
+#
+# git add package.json
+#
+# git commit -m "$new"
+#
+# git push

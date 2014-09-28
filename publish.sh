@@ -9,12 +9,11 @@ if [[ -z $version ]]; then
   version='patch'
 fi
 
-echo $version
 new=$(npm version $version)
 
 git push --tags
 
-# npm publish
+npm publish
 
 git reset HEAD~2
 

@@ -31,23 +31,26 @@ gulp.task('bower', function() {
     .pipe(add('bower_components/modernizr/modernizr.js'))
     .pipe(add('bower_components/mousetrap/mousetrap.js'))
     .pipe(concat('vendor.js'))
-    // .pipe(uglify())
+    .pipe(uglify({mangle: false}))
     .pipe(gulp.dest('./dist/js'))
 })
 
-gulp.task('aurora:copy', function() {
-  return gulp.src('./src/aurora/*.js.map')
+gulp.task('aurora', function() {
+  gulp.src('./src/aurora/*.js.map')
     .pipe(gulp.dest('./dist/js'))
+
+  gulp.src(['./src/aurora/*.js', '!./src/aurora/_aurora.js']) 
+    .pipe(concat('aurora_librairies.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/js'))
+
+  gulp.src('./src/aurora/_aurora.js')
+    .pipe(rename('aurora.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/js/'))
 })
 
-gulp.task('aurora', ['aurora:copy'], function() {
-  return gulp.src('./src/aurora/*.js') 
-    .pipe(concat('aurora.js'))
-    // .pipe(uglify())
-    .pipe(gulp.dest('./dist/js'))
-})
-
-gulp.task('scripts', ['aurora'], function() {
+gulp.task('scripts', function() {
   gulp.src(paths.scripts)
     .pipe(ngmin())
     .on('error', function(err) {
@@ -67,23 +70,11 @@ gulp.task('styles', function() {
     browsers: ['last 2 versions', 'last 2 Chrome versions'],
     cascade: false
   }))
-  // .pipe(add( 
-  //   bower({
-  //     filter: function(path) {
-  //       return p.extname(path) == '.css'
-  //     }
-  //   })
-  // ))
   .pipe(concat('app.css'))
-  // .pipe(replace('font\/vjs', function() {
-  //
-  //   return '../../font/vjs'
-  // }))
   .pipe(gulp.dest('./dist/css'))
   .pipe(minifyCSS())
   .pipe(rename('app.min.css'))
   .pipe(gulp.dest('./dist/css'));
-
 })
 
 gulp.task('default', ['bower', 'aurora', 'scripts', 'styles'])

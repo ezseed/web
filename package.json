@@ -8,6 +8,7 @@
     "start": "node server.js"
   },
   "dependencies": {},
+  "repository": "https://github.com/ezseed/web/",
   "author": "soyuka",
   "license": "CC3.0",
   "devDependencies": {

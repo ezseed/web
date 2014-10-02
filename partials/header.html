@@ -35,7 +35,7 @@
   <!-- Left Nav Section -->
   <ul class="left">
     <li class="divider"></li>
-    <li><a href="{{user.client == 'transmission' ? location.origin + ':' + user.port : location.origin  + '/rutorrent'}}" target="_blank"><i class="icon-network"></i> Torrents</a></li>
+    <li><a href="{{user.client_link}}" target="_blank"><i class="icon-network"></i> Torrents</a></li>
     <li class="divider"></li>
     <li><a ui-sref="home.type({type: 'movies'})"><i class="icon-videos"></i> <span translate="MOVIES"></span></a></li>
     <li><a ui-sref="home.type({type: 'albums'})"><i class="icon-albums"></i> <span translate="ALBUMS"></span></a></li>

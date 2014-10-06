@@ -22,10 +22,12 @@ angular.module('ezseed')
         $log.debug('User logged in', user)
         body.classList.remove('login')
 
+        var origin = window.location.protocol + window.location.hostname
+
         if(user.client == 'none') {
           user.client_link = '#'
         } else {
-          user.client_link = user.client == 'transmission' ? location.origin + ':' + user.port : location.origin  + '/rutorrent'
+          user.client_link = user.client == 'transmission' ?  origin + ':' + user.port : origin + '/rutorrent'
         }
 
         $localStorage.user = user

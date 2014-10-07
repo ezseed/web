@@ -16,10 +16,11 @@ function AlbumResolver($stateParams, $http, $q, $colorThief) {
       var a = document.createElement('a')
       a.href = data.picture
 
+      //checking if it's a local element
       if(a.origin == location.origin && location.origin.indexOf('localhost') !== -1) {
         defer.resolve(data)
       } else {
-        $colorThief(data.picture).then(function(colors) {
+        $colorThief(location.origin + data.picture).then(function(colors) {
           data.color = colors[0] 
           defer.resolve(data)
         })

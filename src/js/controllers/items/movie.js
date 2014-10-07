@@ -12,7 +12,7 @@ angular.module('ezseed')
   }
 
   $scope.video = false
-  
+
   var isVLCInstalled = function() {
     var name = "VLC";
     if (navigator.plugins && (navigator.plugins.length > 0)) {
@@ -36,12 +36,14 @@ angular.module('ezseed')
     video.download = "/movies/"+video._id+"/download"
     video.direct_link = window.location.origin + video.download
     $scope.video = video
+
     player.innerHTML = ""
 
     if(isVLCInstalled()) {
+      $log.debug('VLC installed')
       player.innerHTML =  "<embed id='VLC' type='application/x-vlc-plugin' pluginspage='http://www.videolan.org' width='720px' height='480px' style='display: inline-block;' autoplay='yes' target='"+video.download+"'></embed>" 
     } else {
-      player.innerHTML = '<video><source type='video/mp4' src='/movies/"+video._id+"/stream'/></video>'
+      player.innerHTML = "<video><source type='video/mp4' src='/movies/"+video._id+"/stream'/></video>"
     }
   }
 })
@@ -51,7 +53,6 @@ angular.module('ezseed')
     $scope.numCols = Math.max(2, Math.min(12, num * 2))
     $scope.numBlock = Math.min(num, 6)
 
-    // console.log(numCols)
     return $scope.numCols
   }
 })

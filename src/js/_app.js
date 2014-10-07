@@ -12,11 +12,9 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
 
   //log if missing translation
   $translateProvider.useMissingTranslationHandlerLog()
+  $translateProvider.preferredLanguage('en_US')
 
   $translateProvider.useUrlLoader('locales.json')
-
-  $translateProvider.preferredLanguage('en_US')
-  moment.locale('en')
 
   $urlRouterProvider.otherwise("/login")
 
@@ -163,6 +161,10 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
     $http.defaults.headers.common.Authorization = 'Bearer '+$localStorage.user.token
     $translate.use($localStorage.user.lang)
   }
+
+  $http.get('/api/config').success(function(data) {
+    moment.locale(data.lang)
+  })
 
   $rootScope.$stateParams = $stateParams
   $rootScope.search = {params: {}, query: {}}

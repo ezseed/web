@@ -1,5 +1,5 @@
 angular.module('ezseed')
-.controller('sidebarCtrl', function($scope, $http, paths, size, $log, $rootScope, $recent, $stateParams, $translate) {
+.controller('sidebarCtrl', function($scope, $http, paths, size, $log, $rootScope, $recent, $stateParams, $translate, $localStorage) {
 
   $scope.paths = paths
   $log.debug('paths: ', paths)
@@ -9,7 +9,7 @@ angular.module('ezseed')
 
   $scope.usageDetails = {
     size: size.total.pretty,
-    total: $scope.user.prettySize
+    total: $localStorage.user.prettySize
   }
 
   $scope.array_colors = ['#A7C5BD', '#EB7B59','#CF4647']

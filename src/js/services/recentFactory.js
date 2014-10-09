@@ -17,6 +17,19 @@ angular.module('ezseed')
         data.movies = $filter('tvShowsPacker')(data.movies)
       }
 
+      if(data.albums) {
+        for(var i in data.albums) {
+          if(data.albums[i].picture) {
+            var e = document.createElement('A')
+            e.href = data.albums[i].picture
+            if(e.hostname == location.hostname && e.pathname.indexOf('/tmp') !== 0) {
+              data.albums[i].picture = window.location.origin + '/albums/' + data.albums[i]._id + '/cover'
+            }
+          }
+
+        }
+      }
+
       $log.debug('Recent: ', data)
       defer.resolve(data) 
     })

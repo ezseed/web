@@ -22,12 +22,12 @@ angular.module('ezseed')
         $log.debug('User logged in', user)
         body.classList.remove('login')
 
-        var origin = window.location.protocol + window.location.hostname
+        var origin = window.location.protocol + '//' + window.location.hostname
 
         if(user.client == 'none') {
           user.client_link = '#'
         } else {
-          user.client_link = user.client == 'transmission' ?  origin + ':' + user.port : origin + '/rutorrent'
+          user.client_link = user.client == 'transmission' ? origin + ':' + user.port : origin + '/rutorrent'
         }
 
         $localStorage.user = user
@@ -35,8 +35,8 @@ angular.module('ezseed')
 
         $http.defaults.headers.common.Authorization = 'Bearer '+$localStorage.user.token
 
-        $state.transitionTo('home.desktop', {}, { 
-          reload: true, inherit: false, notify: true 
+        $state.go('home.desktop', {}, { 
+          reload: true, inherit: true, notify: true 
         })
       }
     })

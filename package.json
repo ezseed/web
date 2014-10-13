@@ -1,6 +1,6 @@
 {
   "name": "ezseed-web",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Ezseed web interface",
   "main": "index.js",
   "scripts": {

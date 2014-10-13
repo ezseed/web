@@ -1,11 +1,12 @@
 angular.module('ezseed')
 .controller('LoginCtrl', function($scope, $http, $localStorage, $log, $state, $loaderService, $rootScope) {
 
+  var body = document.querySelector('body')
+
   if($localStorage.user) {
+    body.classList.add('loading')
     return $state.transitionTo('home.desktop')
   } 
-
-  var body = document.querySelector('body')
 
   body.classList.add('login')
   document.querySelector('input[type="text"]').focus()
@@ -35,8 +36,8 @@ angular.module('ezseed')
 
         $http.defaults.headers.common.Authorization = 'Bearer '+$localStorage.user.token
 
-        $state.go('home.desktop', {}, { 
-          reload: true, inherit: true, notify: true 
+        $state.go($state.current, angular.copy($state.params), { 
+          reload: true, inherit: false, notify: true 
         })
       }
     })

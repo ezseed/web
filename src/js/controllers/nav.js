@@ -1,6 +1,8 @@
 angular.module('ezseed')
 .controller('NavCtrl', function($scope, $http, $localStorage, $rootScope, $recent, $timeout, $stateParams) {
 
+  $scope.user = $localStorage.user
+
   //debug purpose only
   $scope.resetLibrairy = function($event) {
     $event.preventDefault()

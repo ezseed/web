@@ -1,5 +1,5 @@
 angular.module('ezseed')
-.factory('httpInterceptor', function($loaderService, $q, $log, $location) {
+.factory('httpInterceptor', function($loaderService, $q, $log, $location, $localStorage) {
 
   return {
     request: function(config) {
@@ -10,7 +10,7 @@ angular.module('ezseed')
     // should not happen
    requestError: function(rejection) {
       $loaderService.load(false)
-      $log.debug('request error', rejection)      
+      $log.debug('request error', rejection)
       return $q.reject(rejection);
     },
 
@@ -23,14 +23,15 @@ angular.module('ezseed')
       $loaderService.load(false)
       $log.debug('response error', rejection)
 
-      if(rejection.data.error) {
-        $loaderService.alert(rejection.data.error)
-      } else {
-        $loaderService.alert(rejection.statusText)
-      }
-
       if(rejection.status == '404') {
         $location.path('/')
+      } else if(rejection.status == '401') {
+        delete $localStorage.user
+        $loaderService.alert('Whoops, try again.')
+      } else if (rejection.data.error) {
+        $loaderService.alert(rejection.data.error)
+      } else {
+        $loaderService.alert('Unexpected error')
       }
 
       return $q.reject(rejection);

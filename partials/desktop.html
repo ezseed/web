@@ -47,11 +47,11 @@
               <th>#</th>
             </tr>
           </thead>
-          <tbody ng-repeat="others in recent.others">
-              <tr ng-repeat="item in others.files">
-                <td>{{item.name}}</td>
-                <td>{{item.path}}</td>
-                <td><a href="others/{{item._id}}/download"><i class="icon-download"></i></a></td>
+          <tbody>
+              <tr ng-repeat="others in recent.others">
+                <td>{{others.name}}</td>
+                <td>{{others.prevDir}}</td>
+                <td><!-- <a href="others/{{others._id}}/download"><i class="icon&#45;download"></i></a> --></td>
               </tr>
           </tbody>
         </table>

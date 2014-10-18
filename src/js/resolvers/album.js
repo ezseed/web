@@ -16,7 +16,7 @@ function AlbumResolver($stateParams, $http, $q, $colorThief, $filter) {
       data = $filter('albumsCover')(data)
 
       //checking if it's a local element
-      if(a.origin == location.origin && location.origin.indexOf('localhost') !== -1) {
+      if(location.origin.indexOf('localhost') !== -1) {
         defer.resolve(data)
       } else {
         $colorThief(data.picture).then(function(colors) {

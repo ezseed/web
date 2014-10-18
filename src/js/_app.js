@@ -93,11 +93,16 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
         templateUrl: 'partials/desktop.html', 
         controller: 'DesktopCtrl',
         resolve: {
-          recent: function($http, $q) {
+          recent: function($http, $q, $filter) {
 
             var defer = $q.defer()
 
             $http.get('api/-/files', {params: {limit: 14, sort: '-dateAdded'}}).success(function(data){
+
+              for(var i in data.albums) {
+                data.albums[i] = $filter('albumsCover')(data.albums[i])
+              }
+
               defer.resolve(data) 
             })
 

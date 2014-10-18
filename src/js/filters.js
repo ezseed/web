@@ -25,6 +25,30 @@ angular.module('ezseed')
       }
     }
   })
+  /**
+   * Albums cover normalizer
+   */
+  .filter('albumsCover', function() {
+
+    return function(data) {
+
+      if(!data.picture)
+        return data
+
+      var a = document.createElement('a')
+      a.href = data.picture
+
+      if(a.hostname == location.hostname) {
+        if(a.pathname.indexOf('/tmp') !== 0) {
+          data.picture = window.location.origin + '/albums/' + data._id + '/cover'
+        } else {
+          data.picture = window.location.origin + '/' + data.picture
+        }
+      } 
+
+      return data
+    }
+  })
   .filter('prettyBytes', function() {
 
       /*!

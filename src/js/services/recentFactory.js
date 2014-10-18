@@ -11,7 +11,7 @@ angular.module('ezseed')
 
     default_params.type = type ? type : $stateParams.type 
 
-    $http.get('api/-/files', {params: angular.extend(default_params, {match: params})}).success(function(data){
+    $http.get('api/-/files', {params: angular.extend(default_params, {match: params, paths: $rootScope.watched_paths})}).success(function(data){
 
       if($rootScope.search && $rootScope.search.params && $rootScope.search.params.movieType == 'tvseries') {
         data.movies = $filter('tvShowsPacker')(data.movies)

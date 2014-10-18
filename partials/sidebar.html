@@ -19,7 +19,7 @@
   <div id="watched-paths">
     <ul>
       <li ng-repeat="p in paths.paths">
-        <input type="checkbox" id="{{p._id}}" checklist-value="p._id" class="checkbox" ng-checked="p._id == user.default_path" checklist-model="watched_paths"><label for="{{p._id}}">{{p.path}}</label>
+        <input type="checkbox" id="{{p._id}}" checklist-value="p._id" class="checkbox" ng-checked="watched_paths.indexOf(p._id) !== -1" checklist-model="watched_paths"><label for="{{p._id}}">{{p.path}}</label>
       </li>
     </ul>
   </div>

@@ -15,12 +15,24 @@ angular.module('ezseed')
   $scope.array_colors = ['#A7C5BD', '#EB7B59','#CF4647']
   $scope.array_sizes = [size.albums.percent, size.movies.percent, size.others.percent]
 
-  //TODO
-  $scope.watched_paths = []
+  var watched_paths = $localStorage.watched_paths || []
 
-  $scope.$watchCollection('watched_paths', function(newVal, oldVal) {
+  if(watched_paths.length == 0) {
+    for(var i in paths.paths) {
+      watched_paths.push(paths.paths[i]._id)
+    }
+  }
+
+  $rootScope.watched_paths = watched_paths
+
+  $rootScope.$watchCollection('watched_paths', function(newVal, oldVal) {
     if(!angular.equals(newVal, oldVal)) {
-      console.log(newVal);
+      $rootScope.watched_paths = $localStorage.watched_paths = newVal
+
+      $rootScope.recent = {}
+      $recent($stateParams.type, $rootScope.search.params).then(function(data) {
+        $rootScope.recent = data
+      })
     }
   })
 

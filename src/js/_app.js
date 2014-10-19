@@ -62,10 +62,10 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
         templateUrl: 'partials/sidebar.html',
         controller: 'sidebarCtrl',
         resolve: {
-          paths: function($http, $q, $localStorage) {
+          paths: function($http, $q, $localStorage, $localStorageCache) {
             var defer = $q.defer()
 
-            $http.get('api/-').success(function(data){
+            $http.get('api/-', {cache: $localStorageCache}).success(function(data){
               angular.extend($localStorage.user, data)
               defer.resolve(data)            
             })
@@ -75,7 +75,7 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
           size: function($http, $q) {
             var defer = $q.defer()
 
-            $http.get('api/-/size').success(function(data){
+            $http.get('api/-/size', {cache: $localStorageCache}).success(function(data){
               defer.resolve(data)            
             })
 

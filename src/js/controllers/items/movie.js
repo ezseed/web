@@ -1,7 +1,9 @@
 angular.module('ezseed')
-.controller('MovieCtrl', function($scope, $log, movie) {
+.controller('MovieCtrl', function($scope, $log, movie, $localStorage, $hasWatched) {
   $log.debug('Movie: ', movie)
   $scope.movie = movie
+
+  $scope.hasWatched = $hasWatched.has;
 
   $scope.movieStyle = "'background-image'= '"+movie.infos.backdrop+"'"
 
@@ -33,6 +35,11 @@ angular.module('ezseed')
   var player = document.getElementById('video_container')
 
   $scope.play = function(video) {
+
+    setTimeout(function() {
+      $hasWatched.add(video._id)
+    }, 600000)
+
     video.download = "/movies/"+video._id+"/download"
     video.direct_link = window.location.origin + video.download
     $scope.video = video

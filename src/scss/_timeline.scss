@@ -174,7 +174,12 @@ $bg: rgba(31, 31, 31, 0.75);
         }
         .circle {
           background: $red;
+
+          &.watched {
+              background: $success-color;
+          }
         }
+
       }
       & ~ .content {
         // max-height: 250px;

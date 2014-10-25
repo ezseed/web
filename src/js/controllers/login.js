@@ -5,7 +5,7 @@ angular.module('ezseed')
 
   if($localStorage.user) {
     body.classList.add('loading')
-    return $state.transitionTo('home.desktop')
+    return $state.go('home.desktop')
   } 
 
   body.classList.add('login')

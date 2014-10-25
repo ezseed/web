@@ -161,18 +161,19 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
   $locationProvider.html5Mode(false).hashPrefix('!')
 
 })
-.run(function($http, $localStorage, $rootScope, $stateParams, $translate) {
+.run(function($http, $localStorage, $rootScope, $stateParams, $translate, $state) {
   if($localStorage.user) {
     $http.defaults.headers.common.Authorization = 'Bearer '+$localStorage.user.token
     $translate.use('fr')
+    $http.get('/api/config').success(function(data) {
+      moment.locale(data.lang)
+      $translate.use('fr')
+    })
+  } else {
+    $state.go('login')
   }
 
   videojs.options.flash.swf = '/bower_components/videojs/dist/video-js/video-js.swf'
-
-  $http.get('/api/config').success(function(data) {
-    moment.locale(data.lang)
-    $translate.use('fr')
-  })
 
   $rootScope.$stateParams = $stateParams
   $rootScope.search = {params: {}, query: {}}

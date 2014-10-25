@@ -22,7 +22,7 @@
   "dependencies": {
     "angular-classy": "~0.4.2",
     "angular": "~1.2.16",
-    "foundation": "~5.2.2",
+    "foundation": "~5.4.6",
     "angular-foundation": "~0.3.1",
     "angular-route": "~1.2.16",
     "angular-animate": "~1.2.16",
@@ -36,7 +36,9 @@
     "angular-sanitize": "~1.2.23",
     "moment": "~2.8.3",
     "mousetrap": "~1.4.6",
-    "angular-socket-io": "~0.6.0"
+    "angular-socket-io": "~0.6.0",
+    "mobile-detect": "hgoebl/mobile-detect.js#~0.4.2",
+    "videojs": "~4.9.1"
   },
   "overrides": {
     "foundation": {

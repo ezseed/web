@@ -71,13 +71,24 @@ gulp.task('styles', function() {
     cascade: false
   }))
   .pipe(concat('app.css'))
+
   .pipe(gulp.dest('./dist/css'))
   .pipe(minifyCSS())
   .pipe(rename('app.min.css'))
   .pipe(gulp.dest('./dist/css'));
 })
 
-gulp.task('default', ['bower', 'aurora', 'scripts', 'styles'])
+gulp.task('videojs', function() {
+  gulp.src('bower_components/videojs/dist/video-js/font/*')
+    .pipe(gulp.dest('./font/'))
+
+  return gulp.src('bower_components/videojs/dist/video-js/video-js.css')
+  .pipe(replace('font/vjs', '../../font/vjs'))
+  .pipe(rename('videojs.css'))
+  .pipe(gulp.dest('./dist/css/'))
+})
+
+gulp.task('default', ['bower', 'aurora', 'scripts', 'styles', 'videojs'])
 gulp.task('watch', function() {
   gulp.watch(paths.aurora, ['aurora'])
   gulp.watch(paths.scripts, ['scripts'])

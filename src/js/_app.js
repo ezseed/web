@@ -12,7 +12,7 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
 
   //log if missing translation
   $translateProvider.useMissingTranslationHandlerLog()
-  $translateProvider.preferredLanguage('en_US')
+  $translateProvider.preferredLanguage('en')
 
   $translateProvider.useUrlLoader('locales.json')
 
@@ -164,11 +164,14 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
 .run(function($http, $localStorage, $rootScope, $stateParams, $translate) {
   if($localStorage.user) {
     $http.defaults.headers.common.Authorization = 'Bearer '+$localStorage.user.token
-    $translate.use($localStorage.user.lang)
+    $translate.use('fr')
   }
+
+  videojs.options.flash.swf = '/bower_components/videojs/dist/video-js/video-js.swf'
 
   $http.get('/api/config').success(function(data) {
     moment.locale(data.lang)
+    $translate.use('fr')
   })
 
   $rootScope.$stateParams = $stateParams

@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="dist/css/videojs.css">
   </head>
   <body ng-app="ezseed" ng-controller="MainCtrl">
+    <div role="progressbar" aria-busy="true" aria-label="Loading"></div>
       <!--[if lt IE 7]>
           <p class="browsehappy">Ouch</p>
       <![endif]-->
-    <ui-view></ui-view>
+    <div class="content"><ui-view></ui-view></div>
     <script src="socket.io/socket.io.js"></script>
     <script src="dist/js/vendor.js"></script>
     <script src="dist/js/aurora.js"></script>

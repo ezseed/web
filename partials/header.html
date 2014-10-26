@@ -26,7 +26,6 @@
         <li><a ui-sref="settings" translate>SETTINGS</a></li>
         <li ng-if="user.role == 'admin'"><a ui-sref="admin" translate>ADMINISTRATION</a></li>
         <li><a ng-click="refreshLibrairy($event)"><i class="icon-undo"></i>{{'REFRESH' | translate}}</a></li>
-        <!-- <li><a ng&#45;click="resetLibrairy($event)"><i class="icon&#45;undo"></i>Reset</a></li> -->
         <li><a ui-sref="logout" target="_self" translate>LOGOUT</a></li>
       </ul>
     </li>

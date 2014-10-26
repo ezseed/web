@@ -25,14 +25,14 @@
   </div>
 
   <h5><span translate>DISK_USAGE</span> <small>{{'SIZE' | translate: usageDetails}}</small></h5>
-  <div id="disk-usage">
-    <meter disk-meter disk-sizes="array_sizes" disk-colors="array_colors" value="{{size.total.bytes}}" id="meter-disk-usage" min="0" max="{{user.spaceLeft}}" title="bytes">
-      <div class="meter-gauge"></div>
-    </meter>
-    <ul class="swatch">
-      <li class="swatch__elem">{{'ALBUMS' | translate}} <span class="used-space">{{size.albums.pretty}}</span></li>
-      <li class="swatch__elem">{{'MOVIES' | translate}} <span class="used-space">{{size.movies.pretty}}</span></li>
-      <li class="swatch__elem">{{'OTHERS' | translate}} <span class="used-space">{{size.others.pretty}}</span></li>
-    </ul>
+  <div id="disk-usage" disk-meter disk-sizes="array_sizes" disk-colors="array_colors" disk-legend="array_legend">
+    <!-- <meter disk&#45;meter disk&#45;sizes="array_sizes" disk&#45;colors="array_colors" value="{{size.total.bytes}}" id="meter&#45;disk&#45;usage" min="0" max="{{user.spaceLeft}}" title="bytes"> -->
+    <!--   <div class="meter&#45;gauge"></div> -->
+    <!-- </meter> -->
+    <!-- <ul class="swatch"> -->
+    <!--   <li class="swatch__elem">{{'ALBUMS' | translate}} <span class="used&#45;space">{{size.albums.pretty}}</span></li> -->
+    <!--   <li class="swatch__elem">{{'MOVIES' | translate}} <span class="used&#45;space">{{size.movies.pretty}}</span></li> -->
+    <!--   <li class="swatch__elem">{{'OTHERS' | translate}} <span class="used&#45;space">{{size.others.pretty}}</span></li> -->
+    <!-- </ul> -->
   </div>
 </div>

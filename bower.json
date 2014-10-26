@@ -38,7 +38,9 @@
     "mousetrap": "~1.4.6",
     "angular-socket-io": "~0.6.0",
     "mobile-detect": "hgoebl/mobile-detect.js#~0.4.2",
-    "videojs": "~4.9.1"
+    "videojs": "~4.9.1",
+    "d3": "~3.4.13",
+    "d3-tip": "~0.6.6"
   },
   "overrides": {
     "foundation": {

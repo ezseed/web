@@ -1,5 +1,5 @@
 angular.module('ezseed')
-.controller('sidebarCtrl', function($scope, $http, paths, size, $log, $rootScope, $recent, $stateParams, $translate, $localStorage) {
+.controller('sidebarCtrl', function($scope, $http, paths, size, $log, $rootScope, $recent, $stateParams, $translate, $localStorage, $filter) {
 
   $scope.paths = paths
   $log.debug('paths: ', paths)
@@ -14,6 +14,7 @@ angular.module('ezseed')
 
   $scope.array_colors = ['#A7C5BD', '#EB7B59','#CF4647']
   $scope.array_sizes = [size.albums.percent, size.movies.percent, size.others.percent]
+  $scope.array_legend = [$filter('translate')('ALBUMS'), $filter('translate')('MOVIES'), $filter('translate')('OTHERS')]
 
   var watched_paths = $localStorage.watched_paths || []
 

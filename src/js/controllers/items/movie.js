@@ -45,10 +45,8 @@ angular.module('ezseed')
       watched = $hasWatched.add(video._id)
     }, 600000)
     
-    var safari = /Safari/.test(window.navigator.userAgent)
-
     video.download = "/movies/"+video._id+"/download" //used with vlc
-    video.stream = "/movies/"+video._id+"/stream/" + (md.os() || md.userAgent() || safari ? 'Safari' : null)
+    video.stream = "/movies/"+video._id+"/stream/" + md.os() || md.userAgent()
     video.direct_link = window.location.origin + video.download
 
     $scope.video = video
@@ -63,8 +61,7 @@ angular.module('ezseed')
       $log.debug('VLC installed')
       video_container.innerHTML =  "<embed id='VLC' type='application/x-vlc-plugin' pluginspage='http://www.videolan.org' width='720px' height='480px' style='display: inline-block;' autoplay='yes' target='"+video.download+"'></embed>" 
 
-    } else if (md.userAgent() == 'Safari' || md.os() == 'iOs' || safari){  
-      $log.debug('safari')
+    } else if (md.os() !== null){  
       video_container.innerHTML = "<video controls width='720' height='480' style='margin: 0 auto' preload autoplay><source src='"+video.stream+"'></source></video>"
     } else {
       video_container.innerHTML = "<video id='videojs_container' class='video-js vjs-default-skin' controls width='720' height='480' style='margin: 0 auto' preload></video>"

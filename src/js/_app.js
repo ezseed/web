@@ -168,7 +168,7 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
     $state.go('login')
   }
 
-  videojs.options.flash.swf = '/bower_components/videojs/dist/video-js/video-js.swf'
+  videojs.options.flash.swf = '/swf/video-js.swf'
 
   $rootScope.$stateParams = $stateParams
   $rootScope.$state = $state

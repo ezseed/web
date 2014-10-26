@@ -3,16 +3,6 @@ angular.module('ezseed')
 
   $scope.user = $localStorage.user
 
-  //debug purpose only
-  $scope.resetLibrairy = function($event) {
-    $event.preventDefault()
-    $http.get('api/-/reset').success(function(data) {
-      $recent($stateParams.type, $rootScope.search.params).then(function(data) {
-        $rootScope.recent = data
-      })
-    })
-  }
-
   $scope.refreshLibrairy = function($event) {
     $event.preventDefault()
     $http.get('api/-/refresh').success(function(data) {

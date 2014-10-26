@@ -30,6 +30,8 @@
   "admin": "Admin",
   "user": "Utilisateur",
   "LANG": "Langue", 
+  "DANGER": "Area 51",
+  "RESET_LIBRAIRY": "Réinitialiser la librairie",
   "SHORTCUT": {
     "SEARCH": "Entrez / pour chercher"
   }

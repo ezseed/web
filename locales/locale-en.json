@@ -30,6 +30,8 @@
   "admin": "Admin",
   "user": "User",
   "LANG": "Language", 
+  "DANGER": "Danger zone",
+  "RESET_LIBRAIRY": "Reset librairy",
   "SHORTCUT": {
     "SEARCH": "Press / to search"
   }

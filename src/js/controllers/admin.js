@@ -1,5 +1,5 @@
 angular.module('ezseed')
-.controller('adminCtrl', function($scope, users, paths, $log, $http, $state, $stateParams) {
+.controller('adminCtrl', function($scope, users, paths, $log, $http, $state, $stateParams, $recent) {
   $log.debug('Admin users', users) 
   $log.debug('Admin paths', paths) 
 
@@ -52,20 +52,6 @@ angular.module('ezseed')
     })
   }
 
-  //checks for a valid path
-  $scope.isValidPath = function(e, path) {
-    if(e.currentTarget.value) {
-      $http.get('admin/validPath', {params: {path: e.currentTarget.value}}).success(function(data) {
-        if(path) {
-          path.error = data.error
-        } else {
-          $scope.path.error = data.error
-        }
-      })
-
-    }
-  }
-
   $scope.new = false
   $scope.edit = []
 
@@ -86,6 +72,17 @@ angular.module('ezseed')
         return $scope.paths[i].path
     }
   }
+
+  //debug purpose only
+  $scope.resetLibrairy = function($event) {
+    $event.preventDefault()
+    $http.get('api/-/reset').success(function(data) {
+      $recent($stateParams.type, $rootScope.search.params).then(function(data) {
+        $rootScope.recent = data
+      })
+    })
+  }
+
 })
 .controller('adminNewPathCtrl', function($scope, $http, $state, $stateParams) {
   $scope.path = {}
@@ -96,6 +93,17 @@ angular.module('ezseed')
         reload: true, inherit: false, notify: true 
       })
     })
+  }
+
+  //checks for a valid path
+  $scope.isValidPath = function(e, path) {
+    if(e.currentTarget.value) {
+      $http.get('admin/validPath', {params: {path: e.currentTarget.value}}).success(function(data) {
+        console.log(data)
+        $scope.path.error = data.error
+      })
+
+    }
   }
 
 
@@ -110,6 +118,15 @@ angular.module('ezseed')
     })
   }
 
+  //checks for a valid path
+  $scope.isValidPath = function(e, path) {
+    if(e.currentTarget.value) {
+      $http.get('admin/validPath', {params: {path: e.currentTarget.value}}).success(function(data) {
+        $scope.path.error = data.error
+      })
+
+    }
+  }
 
 })
 

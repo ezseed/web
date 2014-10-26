@@ -1,11 +1,17 @@
 angular.module('ezseed')
-.controller('sidebarCtrl', function($scope, $http, paths, size, $log, $rootScope, $recent, $stateParams, $translate, $localStorage, $filter) {
+.controller('sidebarCtrl', function($scope, $http, paths, size, $log, $rootScope, $recent, $stateParams, $translate, $localStorage, $filter, $socket) {
 
   $scope.paths = paths
   $log.debug('paths: ', paths)
 
-  $scope.size = size
+  $rootScope.size = size
   $log.debug('size: ', size)
+
+  $socket.on('update', function(update) {
+    $http.get('api/-/size').success(function(data){
+      $rootScope.size = data
+    })
+  })
 
   $scope.usageDetails = {
     size: size.total.pretty,

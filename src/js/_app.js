@@ -113,16 +113,11 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
     }
   })
   .state('home.type', {
-    url: '/:type',
+    url: '/:type/:page',
     views: {
       'desktop': {
         templateUrl: 'partials/desktop.html', 
-        controller: 'DesktopCtrl',
-        resolve: {
-          recent: function($recent, $stateParams) {
-            return $recent($stateParams.type)
-          },
-        }
+        controller: 'DesktopTypeCtrl'
       },
     }
   })
@@ -176,5 +171,6 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
   videojs.options.flash.swf = '/bower_components/videojs/dist/video-js/video-js.swf'
 
   $rootScope.$stateParams = $stateParams
+  $rootScope.$state = $state
   $rootScope.search = {params: {}, query: {}}
 })

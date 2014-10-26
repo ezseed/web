@@ -32,6 +32,8 @@
   "LANG": "Langue", 
   "DANGER": "Area 51",
   "RESET_LIBRAIRY": "Réinitialiser la librairie",
+  "NEXT": "Suivant >",
+  "PREV": "< Précédent",
   "SHORTCUT": {
     "SEARCH": "Entrez / pour chercher"
   }

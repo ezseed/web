@@ -1,5 +1,5 @@
 angular.module('ezseed')
-.factory('$recent', function($q, $http, $stateParams, $log, $filter, $rootScope) {
+.factory('$recent', function($q, $http, $stateParams, $log, $filter, $rootScope, $state) {
 
   return function(type, params) {
     var default_params = {sort: '-dateAdded'}, defer = $q.defer()
@@ -9,9 +9,13 @@ angular.module('ezseed')
 
     $log.debug('Call recent for type %s with params %o', type, params)
 
-    default_params.type = type ? type : $stateParams.type 
-
-    $http.get('api/-/files', {params: angular.extend(default_params, {match: params, paths: $rootScope.watched_paths})}).success(function(data){
+    $http.get('api/-/files', 
+      {
+        params: angular.extend(default_params, 
+                               params, 
+                               {paths: $rootScope.watched_paths},
+                               {type: type})
+    }).success(function(data){
 
       if($rootScope.search && $rootScope.search.params && $rootScope.search.params.movieType == 'tvseries') {
         data.movies = $filter('tvShowsPacker')(data.movies)

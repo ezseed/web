@@ -32,6 +32,8 @@
   "LANG": "Language", 
   "DANGER": "Danger zone",
   "RESET_LIBRAIRY": "Reset librairy",
+  "NEXT": "Next >",
+  "PREV": "< Prev",
   "SHORTCUT": {
     "SEARCH": "Press / to search"
   }

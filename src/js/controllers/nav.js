@@ -1,12 +1,13 @@
 angular.module('ezseed')
-.controller('NavCtrl', function($scope, $http, $localStorage, $rootScope, $recent, $timeout, $stateParams) {
+.controller('NavCtrl', function($scope, $http, $localStorage, $rootScope, $recent, $timeout, $state, $paginate) {
 
   $scope.user = $localStorage.user
 
   $scope.refreshLibrairy = function($event) {
     $event.preventDefault()
     $http.get('api/-/refresh').success(function(data) {
-      $recent($stateParams.type, $rootScope.search.params).then(function(data) {
+      $recent($state.params.type, $paginate({match: $rootScope.search.params}))
+      .then(function(data) {
         $rootScope.recent = data 
       })
     })
@@ -22,12 +23,13 @@ angular.module('ezseed')
 
       if(search.replace(' ', '').length) {
         $rootScope.search.params.search = search
-        $recent($stateParams.type, $rootScope.search.params).then(function(data) {
+        $recent($state.params.type, {match: $rootScope.search.params}).then(function(data) {
           $rootScope.recent = data
         })
       } else {
         $rootScope.search.params.search = null
-        $recent($stateParams.type, $rootScope.search.params).then(function(data) {
+        $recent($state.params.type, $paginate({match: $rootScope.search.params}))
+        .then(function(data) {
           $rootScope.recent = data 
         })
       }

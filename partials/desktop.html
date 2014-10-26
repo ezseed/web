@@ -56,9 +56,16 @@
           </tbody>
         </table>
       </section>
-      <div class="row">
-        <div class="large-12">
-          <a ui-sref="home.type({type: $state.params.type, page: page_next})" class="button right">test</a>
+      <div class="row" ng-if="$state.params.type">
+        <div class="large-10 large-offset-1 paginate">
+          <ul class="pagination">
+            <li ng-if="page_next !== 0" aria-disabled="{page_next === 0}" class="right">
+              <a ui-sref="home.type({type: $state.params.type, page: page_next})" class="arrow" translate>NEXT</a>
+            </li>
+            <li ng-if="page_prev !== 0" aria-disabled="{page_next === 0}" class="left">
+              <a ui-sref="home.type({type: $state.params.type, page: page_prev})" class="arrow" translate>PREV</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

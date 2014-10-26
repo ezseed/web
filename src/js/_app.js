@@ -112,15 +112,6 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
       },
     }
   })
-  .state('home.type', {
-    url: '/:type/:page',
-    views: {
-      'desktop': {
-        templateUrl: 'partials/desktop.html', 
-        controller: 'DesktopTypeCtrl'
-      },
-    }
-  })
   .state('items', {
     abstract: true,
     views: {
@@ -151,6 +142,15 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
        }
       } 
     },
+  })
+  .state('home.type', {
+    url: '/:type/:page',
+    views: {
+      'desktop': {
+        templateUrl: 'partials/desktop.html', 
+        controller: 'DesktopTypeCtrl'
+      },
+    }
   })
 
   $locationProvider.html5Mode(false).hashPrefix('!')

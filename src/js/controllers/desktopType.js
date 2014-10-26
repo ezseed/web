@@ -18,7 +18,7 @@ angular.module('ezseed')
   $socket.on('update', function(update) {
     getData()
   })
-
+ 
   getData()
 
   Mousetrap.bind('right', function(e) {

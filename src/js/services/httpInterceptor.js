@@ -28,6 +28,8 @@ angular.module('ezseed')
       } else if(rejection.status == '401') {
         delete $localStorage.user
         $loaderService.alert('Whoops, try again.')
+      } else if(rejection.status == '500' && $localStorage.user) {
+        delete $localStorage.user
       } else if (rejection.data.error) {
         $loaderService.alert(rejection.data.error)
       } else {

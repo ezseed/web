@@ -62,7 +62,7 @@ angular.module('ezseed')
       video_container.innerHTML =  "<embed id='VLC' type='application/x-vlc-plugin' pluginspage='http://www.videolan.org' width='720px' height='480px' style='display: inline-block;' autoplay='yes' target='"+video.download+"'></embed>" 
 
     } else if (md.os() !== null){  
-      video_container.innerHTML = "<video controls width='720' height='480' style='margin: 0 auto' preload autoplay><source src='"+video.stream+"'></source></video>"
+      video_container.innerHTML = "<video controls width='720' height='480' style='margin: 0 auto'><source src='"+video.stream+"'></source></video>"
     } else {
       video_container.innerHTML = "<video id='videojs_container' class='video-js vjs-default-skin' controls width='720' height='480' style='margin: 0 auto' preload></video>"
       player = videojs('videojs_container')

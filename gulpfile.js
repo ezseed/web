@@ -2,7 +2,7 @@ var gulp = require('gulp')
   , concat = require('gulp-concat')
   , bower = require('main-bower-files')
   , uglify = require('gulp-uglify')
-  , ngmin = require('gulp-ngmin')
+  , ngannotate = require('gulp-ng-annotate')
   , rename = require('gulp-rename')
   , filter = require('gulp-filter')
   , add = require('gulp-add-src')
@@ -52,7 +52,7 @@ gulp.task('aurora', function() {
 
 gulp.task('scripts', function() {
   gulp.src(paths.scripts)
-    .pipe(ngmin())
+    .pipe(ngannotate())
     .on('error', function(err) {
       console.error(err)
     })

@@ -35,6 +35,15 @@ gulp.task('bower', function() {
     .pipe(gulp.dest('./dist/js'))
 })
 
+gulp.task('d3', function() {
+
+  return gulp.src('./src/vendor/*.js')
+    .pipe(uglify())
+    .pipe(concat('d3.vendor.js'))
+    .pipe(gulp.dest('./dist/js'))
+
+})
+
 gulp.task('aurora', function() {
   gulp.src('./src/aurora/*.js.map')
     .pipe(gulp.dest('./dist/js'))
@@ -71,24 +80,32 @@ gulp.task('styles', function() {
     cascade: false
   }))
   .pipe(concat('app.css'))
-
   .pipe(gulp.dest('./dist/css'))
   .pipe(minifyCSS())
   .pipe(rename('app.min.css'))
   .pipe(gulp.dest('./dist/css'));
 })
 
-gulp.task('videojs', function() {
-  gulp.src('bower_components/videojs/dist/video-js/font/*')
-    .pipe(gulp.dest('./font/'))
-
-  return gulp.src('bower_components/videojs/dist/video-js/video-js.css')
+gulp.task('styles:vendor', function() {
+  return gulp.src(
+    bower({
+      filter: function(path) {
+        return p.extname(path) == '.css'
+      }
+    })
+  )
   .pipe(replace('font/vjs', '../../font/vjs'))
-  .pipe(rename('videojs.css'))
+  .pipe(concat('vendor.css'))
+  .pipe(minifyCSS())
   .pipe(gulp.dest('./dist/css/'))
 })
 
-gulp.task('default', ['bower', 'aurora', 'scripts', 'styles', 'videojs'])
+gulp.task('videojs', function() {
+  gulp.src('bower_components/videojs/dist/video-js/font/*')
+    .pipe(gulp.dest('./font/'))
+})
+
+gulp.task('default', ['bower', 'aurora', 'scripts', 'styles', 'videojs', 'd3', 'styles:vendor'])
 gulp.task('watch', function() {
   gulp.watch(paths.aurora, ['aurora'])
   gulp.watch(paths.scripts, ['scripts'])

@@ -7,7 +7,7 @@ angular.module('ezseed')
 
     if($state.params.type) {
 
-      var limit = 20
+      var limit = 21
 
       if(!$state.params.page) {
         $state.params.page = 1

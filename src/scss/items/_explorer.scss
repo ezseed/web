@@ -1,0 +1,13 @@
+#tree-root {
+    li {
+        list-style-type: none;
+
+        a.directory {
+            color: $grey; 
+        }
+
+        a.directory.opened, a.directory:hover {
+            color: $black;
+        }
+    }
+}

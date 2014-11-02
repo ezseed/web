@@ -1,6 +1,8 @@
 angular.module('ezseed')
 .factory('$recent', function($q, $http, $log, $filter, $rootScope, $state) {
 
+  var limit = $rootScope.paginationLimit
+
   return function(type, params) {
     var default_params = {sort: '-dateAdded'}, defer = $q.defer()
 
@@ -8,8 +10,8 @@ angular.module('ezseed')
     type = typeof type == 'object' ? null : type
 
     if($rootScope.search && $rootScope.search.params && $rootScope.search.params.movieType == 'tvseries') {
-      params.limit = 0
-      params.skip = 0
+      delete params.limit
+      delete params.skip
     }
 
     $log.debug('Call recent for type %s with params %o', type, params)
@@ -37,11 +39,10 @@ angular.module('ezseed')
               data.albums[i].picture = window.location.origin + '/albums/' + data.albums[i]._id + '/cover'
             }
           }
-
         }
       }
 
-      if(type && $rootScope.page_next != 0 && data[type].length < 21) {
+      if(type && $rootScope.page_next != 0 && data[type].length < limit) {
         $rootScope.page_next = 0
       }
 

@@ -19,7 +19,6 @@ angular.module('ezseed')
   //notify that watcher is working
   $socket.on('watching', $loaderService.load)
 })
-
 .controller('tvshowController', function($scope, $filter) {
   $scope.countShows = function(tvshow) {
 

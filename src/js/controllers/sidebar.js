@@ -1,7 +1,7 @@
 angular.module('ezseed')
 .controller('sidebarCtrl', function($scope, $http, paths, size, $log, $rootScope, $recent, $stateParams, $translate, $localStorage, $filter, $socket, $paginate, $state) {
 
-  $scope.paths = paths
+  $rootScope.paths = paths
   $log.debug('paths: ', paths)
 
   $rootScope.size = size
@@ -44,9 +44,7 @@ angular.module('ezseed')
       $rootScope.watched_paths = $localStorage.watched_paths = newVal
 
       $rootScope.recent = {}
-      $recent($stateParams.type, $paginate({match: $rootScope.search.params})).then(function(data) {
-        $rootScope.recent = data
-      })
+      $state.go($state.current.name, angular.extend($stateParams, {page: 1}), {reload: true, inherit: true, notify: true})
     }
   })
 

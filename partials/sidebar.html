@@ -1,7 +1,6 @@
 <ul class="side-nav">
   <li ui-sref="home.type({type: 'movies'})" ui-sref-active="active"><a href=""><i class="icon-videos"></i><span translate="MOVIES"></span></a></li>
   <li ui-sref="home.type({type: 'albums'})" ui-sref-active="active"><a href=""><i class="icon-albums"></i><span translate="ALBUMS"></span></a></li>
-  <li ui-sref="home.type({type: 'others'})" ui-sref-active="active"><a href=""><i class="icon-others"></i><span translate="OTHERS"></span></a></li>
 </ul>
 <div ng-if="sidebar" class="columns large-12">
   <div id="tags" class="row collapse" ng-if="$stateParams.type == 'movies'">
@@ -26,13 +25,5 @@
 
   <h5><span translate>DISK_USAGE</span> <small>{{'SIZE' | translate: usageDetails}}</small></h5>
   <div id="disk-usage" disk-meter disk-sizes="array_sizes" disk-colors="array_colors" disk-legend="array_legend">
-    <!-- <meter disk&#45;meter disk&#45;sizes="array_sizes" disk&#45;colors="array_colors" value="{{size.total.bytes}}" id="meter&#45;disk&#45;usage" min="0" max="{{user.spaceLeft}}" title="bytes"> -->
-    <!--   <div class="meter&#45;gauge"></div> -->
-    <!-- </meter> -->
-    <!-- <ul class="swatch"> -->
-    <!--   <li class="swatch__elem">{{'ALBUMS' | translate}} <span class="used&#45;space">{{size.albums.pretty}}</span></li> -->
-    <!--   <li class="swatch__elem">{{'MOVIES' | translate}} <span class="used&#45;space">{{size.movies.pretty}}</span></li> -->
-    <!--   <li class="swatch__elem">{{'OTHERS' | translate}} <span class="used&#45;space">{{size.others.pretty}}</span></li> -->
-    <!-- </ul> -->
   </div>
 </div>

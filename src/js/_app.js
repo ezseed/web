@@ -152,6 +152,15 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
       },
     }
   })
+  .state('home.explorer', {
+    url: '/explorer',
+    views: {
+      'desktop': {
+        templateUrl: 'partials/explorer.html',
+        controller: 'ExplorerCtrl'
+      }
+    }
+  })
 
   $locationProvider.html5Mode(false).hashPrefix('!')
 
@@ -172,6 +181,7 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
 
   $rootScope.$stateParams = $stateParams
   $rootScope.$state = $state
+  $rootScope.paginationLimit = 14
   $rootScope.search = {params: {}, query: {}}
 
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){

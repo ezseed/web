@@ -50,7 +50,7 @@
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
- 
+
 .icon-laptop:before { content: '\e800'; } /* '' */
 .icon-home:before { content: '\e801'; } /* '' */
 .icon-check:before { content: '\e802'; } /* '' */
@@ -85,6 +85,12 @@
 .icon-loop:before { content: '\e81f'; } /* '' */
 .icon-to-end:before { content: '\e820'; } /* '' */
 .icon-to-start:before { content: '\e821'; } /* '' */
-.icon-volume-off:before { content: '\e822';  } /* '' */
-.icon-volume-up:before { content: '\e823';  } /* '' */
+.icon-volume-off:before { content: '\e822'; } /* '' */
+.icon-volume-up:before { content: '\e823'; } /* '' */
+.icon-eye:before { content: '\e824'; } /* '' */
+.icon-file-application:before { content: '\e826'; } /* '' */
+.icon-file-text:before { content: '\e827'; } /* '' */
+.icon-file-image:before { content: '\e828'; } /* '' */
+.icon-file-audio:before { content: '\e829'; } /* '' */
+.icon-file-video:before { content: '\e82a'; } /* '' */
 

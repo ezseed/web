@@ -1,6 +1,8 @@
 angular.module('ezseed')
 .factory('$recent', function($q, $http, $log, $filter, $rootScope, $state) {
 
+  var limit = $rootScope.paginationLimit
+
   return function(type, params) {
     var default_params = {sort: '-dateAdded'}, defer = $q.defer()
 
@@ -41,7 +43,7 @@ angular.module('ezseed')
         }
       }
 
-      if(type && $rootScope.page_next != 0 && data[type].length < 21) {
+      if(type && $rootScope.page_next != 0 && data[type].length < limit) {
         $rootScope.page_next = 0
       }
 

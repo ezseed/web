@@ -1,13 +1,13 @@
 angular.module('ezseed')
 .factory('$paginate', function($rootScope, $state, $log) {
 
+  var limit = $rootScope.paginationLimit
+
   return function(currentParams) {
 
     var params = {}
 
     if($state.params.type) {
-
-      var limit = 21
 
       if(!$state.params.page) {
         $state.params.page = 1

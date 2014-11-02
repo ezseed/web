@@ -12,7 +12,7 @@
           </li>
         </ul>
         <div ng-if="search.params.movieType === 'tvseries'" class="row">
-          <div ng-controller="tvshowController" ng-repeat="(index, tvshow) in recent.movies track by $index" ng-style="tvshow.style" ng-init="numCols = countShows(tvshow.shows)" class="large-{{numCols}} columns" >
+          <div ng-controller="tvshowController" ng-repeat="(index, tvshow) in recent.movies track by $index" ng-style="tvshow.style" ng-init="numCols = countShows(tvshow)" class="large-{{numCols}} columns" >
             <ul class="large-block-grid-{{numBlock}}">
               <h5>{{tvshow.name}}</h5>
               <li ng-repeat="item in tvshow.shows" class="text-center">
@@ -28,6 +28,14 @@
       <section ng-if="recent.albums.length">
         <h4 translate>ALBUMS</h4>
 
+<!-- as a Dom element -->
+<treecontrol class="tree-classic"
+   tree-model="dataForTheTree"
+   options="treeOptions"
+   on-selection="showSelected(node)"
+   selected-node="node1">
+   employee: {{node.name}} age {{node.age}}
+</treecontrol>
         <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
           <li ng-repeat="item in recent.albums" class="text-center">
           <a class="th" ui-sref="items.album({albumId: item._id})">
@@ -59,10 +67,10 @@
       <div class="row" ng-if="$state.params.type">
         <div class="large-10 large-offset-1 paginate">
           <ul class="pagination">
-            <li ng-if="page_next !== 0" aria-disabled="{page_next === 0}" class="right">
+            <li ng-if="page_next !== 0" class="right">
               <a ui-sref="home.type({type: $state.params.type, page: page_next})" class="arrow" translate>NEXT</a>
             </li>
-            <li ng-if="page_prev !== 0" aria-disabled="{page_next === 0}" class="left">
+            <li ng-if="page_prev !== 0" class="left">
               <a ui-sref="home.type({type: $state.params.type, page: page_prev})" class="arrow" translate>PREV</a>
             </li>
           </ul>

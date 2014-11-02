@@ -1,7 +1,6 @@
 <li ng-click="selectNode($event, node.prevDirRelative)" ng-if="node.name">
-  <a 
-    ng-class="{directory: !node.type, opened: node.opened}" target="_blank"
-    href="{{node.type && node.type !== 'application' ? '/download?read=true&path=' + node.path : node.type ? '/download?path=' + node.path : '#'}}">
+  <a
+    ng-class="{directory: !node.type, opened: node.opened}">
     <i ng-class="{'icon-folder': !node.type && !node.opened, 'icon-folder-open': node.opened && !node.type}" class="icon-file-{{node.type}}"></i>
     {{node.prevDirRelative || node.name}} 
   </a>

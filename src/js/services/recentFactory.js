@@ -7,12 +7,12 @@ angular.module('ezseed')
     params = typeof type == 'object' ? type : params ? params : {} 
     type = typeof type == 'object' ? null : type
 
-    $log.debug('Call recent for type %s with params %o', type, params)
-
     if($rootScope.search && $rootScope.search.params && $rootScope.search.params.movieType == 'tvseries') {
       params.limit = 0
       params.skip = 0
     }
+
+    $log.debug('Call recent for type %s with params %o', type, params)
 
     $http.get('api/-/files', 
       {
@@ -23,6 +23,7 @@ angular.module('ezseed')
     }).success(function(data){
 
       if($rootScope.search && $rootScope.search.params && $rootScope.search.params.movieType == 'tvseries') {
+        $log.debug('tvshowspacker')
         data.movies = $filter('tvShowsPacker')(data.movies)
       }
 

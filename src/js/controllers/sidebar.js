@@ -61,11 +61,8 @@ angular.module('ezseed')
         }
       }
 
-      $state.go($state.current.name, angular.extend($stateParams, {page: 1}), {reload: true})
-      // $rootScope.recent = {}
-      // $recent(type, {match: $rootScope.search.params}).then(function(data) {
-      //   $rootScope.recent = data
-      // })
+      $rootScope.recent = {}
+      $state.go($state.current.name, angular.extend($stateParams, {page: 1}), {reload: true, inherit: true, notify: true})
     }
   }
 

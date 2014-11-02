@@ -173,4 +173,10 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
   $rootScope.$stateParams = $stateParams
   $rootScope.$state = $state
   $rootScope.search = {params: {}, query: {}}
+
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+    if(fromParams.type !== toParams.type) {
+      toParams.page = 1
+    } 
+  })
 })

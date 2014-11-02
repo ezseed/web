@@ -79,12 +79,3 @@ angular.module('ezseed')
 
   }
 })
-.controller('tvshowController', function($scope, $filter) {
-  $scope.countShows = function(tvshow) {
-    var num = $filter('count')(tvshow)
-    $scope.numCols = Math.max(2, Math.min(12, num * 2))
-    $scope.numBlock = Math.min(num, 6)
-
-    return $scope.numCols
-  }
-})

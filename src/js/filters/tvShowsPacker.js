@@ -66,9 +66,10 @@ angular.module('ezseed')
       //if nb cols left + num > 6
       // or
       //style = %6 ==0 (new row) clear
-      if(blocks[u].width + blocks[u].num > nextBreak || blocks[u].num % numCols == 0) {
+      if(blocks[u].num % numCols == 0 || blocks[u].width + blocks[u].num > nextBreak) {
         blocks[u].style = {clear: 'left'}
       }
+      // console.log(blocks[u].name, blocks[u].style, blocks[u].num, nextBreak)
     }
 
     return blocks

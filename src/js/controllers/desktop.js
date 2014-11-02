@@ -20,3 +20,12 @@ angular.module('ezseed')
   $socket.on('watching', $loaderService.load)
 })
 
+.controller('tvshowController', function($scope, $filter) {
+  $scope.countShows = function(tvshow) {
+
+    $scope.numCols = Math.max(2, Math.min(12, tvshow.width * 2))
+    $scope.numBlock = Math.min(tvshow.width, 6)
+
+    return $scope.numCols
+  }
+})

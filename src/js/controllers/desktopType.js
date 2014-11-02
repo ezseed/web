@@ -1,5 +1,5 @@
 angular.module('ezseed')
-.controller('DesktopTypeCtrl', function($scope, $stateParams, $rootScope, $recent, $socket, $loaderService, $state, $paginate) {
+.controller('DesktopTypeCtrl', function($scope, $stateParams, $rootScope, $recent, $socket, $loaderService, $state, $paginate, $log) {
 
   var body = document.querySelector('body')
 

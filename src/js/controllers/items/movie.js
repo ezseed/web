@@ -1,5 +1,5 @@
 angular.module('ezseed')
-.controller('MovieCtrl', function($scope, $log, movie, $localStorage, $hasWatched) {
+.controller('MovieCtrl', function($scope, $log, movie, $localStorage, $hasWatched, isPluginInstalled) {
 
   $log.debug('Movie: ', movie)
   $scope.movie = movie
@@ -12,22 +12,6 @@ angular.module('ezseed')
   $scope.bgColor = movie.color
 
   var md = new MobileDetect(window.navigator.userAgent)
-
-  var isVLCInstalled = function() {
-    var name = "VLC";
-    if (navigator.plugins && (navigator.plugins.length > 0)) {
-      for(var i=0;i<navigator.plugins.length;++i) 
-        if (navigator.plugins[i].name.indexOf(name) != -1) 
-        return true;
-    }
-    else {
-      try {
-        new ActiveXObject("VideoLAN.VLCPlugin.2");
-        return true;
-      } catch (err) {}
-    }
-    return false;
-  }
 
   //stores the video informations
   $scope.video = false
@@ -57,7 +41,10 @@ angular.module('ezseed')
       video_container.innerHTML = ""
     }
 
-    if(isVLCInstalled()) {
+    if(isPluginInstalled('divx')) {
+      $log.debug('DIVX Installed')
+      video_container.innerHTML =  "<embed id='DIVX' type='video/divx' pluginspage='http://go.divx.com/plugin/download/' width='720px' height='480px' style='display: inline-block;' autoplay='yes' src'"+video.download+"'></embed>" 
+    } else if(isPluginInstalled('vlc')) {
       $log.debug('VLC installed')
       video_container.innerHTML =  "<embed id='VLC' type='application/x-vlc-plugin' pluginspage='http://www.videolan.org' width='720px' height='480px' style='display: inline-block;' autoplay='yes' target='"+video.download+"'></embed>" 
 

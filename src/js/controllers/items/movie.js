@@ -43,7 +43,7 @@ angular.module('ezseed')
 
     if(isPluginInstalled('divx')) {
       $log.debug('DIVX Installed')
-      video_container.innerHTML =  "<embed id='DIVX' type='video/divx' pluginspage='http://go.divx.com/plugin/download/' width='720px' height='480px' style='display: inline-block;' autoplay='yes' src'"+video.download+"'></embed>" 
+      video_container.innerHTML =  "<embed id='DIVX' type='video/divx' pluginspage='http://go.divx.com/plugin/download/' width='720px' height='480px' style='display: inline-block;' autoplay='yes' src='"+video.download+"'></embed>" 
     } else if(isPluginInstalled('vlc')) {
       $log.debug('VLC installed')
       video_container.innerHTML =  "<embed id='VLC' type='application/x-vlc-plugin' pluginspage='http://www.videolan.org' width='720px' height='480px' style='display: inline-block;' autoplay='yes' target='"+video.download+"'></embed>" 

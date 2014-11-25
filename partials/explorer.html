@@ -1,4 +1,20 @@
-<section>
+<section id="explorer">
   <h4 translate>EXPLORER</h4>
-  <tree id="tree-root" nodes="nodes"></tree>
+  <ul class="menu inline-list">
+    <li translate>EXPLORER</li>
+    <!-- <li>Emplacement: <span contenteditable>/home</span></li> -->
+    <li ng-if="archives.length > 0" class="right">
+      <div class="row collapse">
+        <div class="large-7 columns">
+          <input type="text" ng-model="archiveName" />
+        </div>
+        <div class="large-5 columns">
+          <a class="button primary postfix" ng-class="archive.class" ng-href="/archive/">.zip ({{archive.size}})</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div id="tree">
+    <tree id="tree-root" nodes="nodes" archives="archives"></tree>
+  </div>
 </section>

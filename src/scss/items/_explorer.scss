@@ -10,4 +10,39 @@
             color: $black;
         }
     }
+
 }
+
+#explorer {
+
+    .inline-list {
+        border: 1px solid scale-color($white, $lightness:-11%);
+	    border-bottom: 1px solid scale-color($white, $lightness:-7%);
+        line-height: 2rem;
+        padding: 5px 20px;
+        margin: 0;
+        background-color: $white;
+
+        li span {
+            display: inline;
+        }
+
+        input, .button, button {
+            margin-bottom: 0;
+            height: 2rem;
+        }
+    }
+
+    #tree {
+        border: 1px solid scale-color($white, $lightness:-11%);
+        border-top: 0;
+        background-color: $white;
+        padding: 10px 0;
+        position: relative;
+        max-height: 400px;
+        overflow: auto;
+        display: block;
+    }
+
+}
+

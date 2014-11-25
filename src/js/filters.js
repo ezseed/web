@@ -91,4 +91,38 @@ angular.module('ezseed')
 
     return prettyBytes;
   })
+  /**
+   * unique array
+   * https://raw.githubusercontent.com/kvz/phpjs/master/functions/array/array_unique.js
+   */
+  .filter('unique', function() {
+    return function array_unique(inputArr) {
+      var key = '',
+        tmp_arr2 = {},
+        val = '';
+
+      var __array_search = function (needle, haystack) {
+        var fkey = '';
+        for (fkey in haystack) {
+          if (haystack.hasOwnProperty(fkey)) {
+            if ((haystack[fkey] + '') === (needle + '')) {
+              return fkey;
+            }
+          }
+        }
+        return false;
+      };
+
+      for (key in inputArr) {
+        if (inputArr.hasOwnProperty(key)) {
+          val = inputArr[key];
+          if (false === __array_search(val, tmp_arr2)) {
+            tmp_arr2[key] = val;
+          }
+        }
+      }
+
+      return tmp_arr2;
+    }
+  })
 

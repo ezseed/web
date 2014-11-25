@@ -1,12 +1,22 @@
-<li ng-click="selectNode($event, node.prevDirRelative)" ng-if="node.name">
-  <a
+<li ng-if="node.name">
+  <span
     ng-class="{directory: !node.type, opened: node.opened}">
-    <i ng-class="{'icon-folder': !node.type && !node.opened, 'icon-folder-open': node.opened && !node.type}" class="icon-file-{{node.type}}"></i>
-    {{node.prevDirRelative || node.name}} 
-  </a>
+    <a ng-click="selectNode($event, node.prevDirRelative)">
+      <i ng-class="{'icon-folder': !node.type && !node.opened, 'icon-folder-open': node.opened && !node.type}" class="icon-file-{{node.type}}" ng-hide="node.loading"></i>
+      <span class="ouro ouro3" ng-show="node.loading">
+        <span class="left"><span class="anim"></span></span>
+        <span class="right"><span class="anim"></span></span>
+      </span>
+      {{node.prevDirRelative || node.name}} 
+    </a>
+    <input type="checkbox" checklist-value="node" ng-click="check($event, node)" checklist-model="archives" ng-show="node.size"/>
+  </span>
+  <!-- <input type="checkbox" checklist&#45;value="node" ng&#45;if="!node.type" checklist&#45;model="archives" /> -->
 
   <span ng-show="node.type">
     <a href="/download?path={{node.path}}" target="_blank"><i class="icon-download"></i></a>
-    <a ng-if="node.type !== 'application'" href="/download?path={{node.path}}&read=true" target="_blank"><i class="icon-eye"></i></a>
+    <a ng-if="node.type !== 'application'" href="/download?path={{node.path}}&read=true" target="_blank">
+      <i class="icon-eye"></i>
+    </a>
   </span>
 </li>

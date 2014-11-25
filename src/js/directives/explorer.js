@@ -5,59 +5,98 @@ angular.module('ezseed')
     templateUrl: '/partials/items/tree.html',
     scope: {
       nodes: '=',
+      archives: '='
     }
   }
 })
 .directive('treeitem', function($compile) {
+  var addFileTree = function addFileTree (scope, element) {
+    var template = angular.element('<tree nodes="node.children" ng-show="node.opened" archives="archives"></tree>')
+
+    $compile(template)(scope, function(cloned, scope) {
+      element.after(cloned) 
+    })
+  }
+
   return {
     restrict: 'E',
-    // transclude: true,
     templateUrl: '/partials/items/treeitem.html',
+    // require: 'tree',
     controllerAs: 'treeItemCtrl',
     controller: function($scope, $http, $compile, $rootScope) {
 
+      $scope.check = function(event, node) {
+        node.checked = event.currentTarget.checked 
+
+        //node is checked but not opened
+        if(node.checked == true && !node.opened && !node.children) {
+          $scope.selectNode(event, node.prevDirRelative)
+        }
+      }
+
       $scope.selectNode = function(event, isDirectory) {
         var self = this
-        event.stopPropagation()
 
         if(!self.node.children && isDirectory) {
+          self.node.loading = true
           $http.get('api/-/tree', {params: {path: this.node.prevDir}}).success(function(data) {
             self.node.children = data
-            self.node.opened = true
-            $compile(
-              '<tree nodes="node.children" ng-show="node.opened"></tree>'
-            )($scope, function(cloned, scope) {
-              angular.element(event.target).append(cloned)
-            })
-
+            addFileTree($scope, angular.element(event.target.parentElement))
             $rootScope.$broadcast('tree.update')
+            self.node.loading = false
           })
-        } else {
+        }
+
+        if(isDirectory) {
           this.node.opened = !this.node.opened
         }
       }
     },
+
     link: function(scope, element, attrs) {
-      if(angular.isArray(scope.node.children)) {
-        $compile(
-          '<tree nodes="node.children" ng-show="node.opened"></tree>'
-        )(scope, function(cloned, scope) {
-          element.append(cloned)
-        })
+
+      if(angular.isArray(scope.node.children) && scope.node.children.length > 0) {
+        addFileTree(scope, element)
       }
     }
   }
 })
-.controller('ExplorerCtrl', function($scope, $rootScope, $sessionStorage, $socket) {
+.controller('ExplorerCtrl', function($scope, $rootScope, $sessionStorage, $socket, $filter, $log, $http) {
 
   var paths = $rootScope.paths.paths
 
-  var reset = function() {
+ function reset() {
       $sessionStorage.tree = {nodes: []}
       for(var i in paths) {
         var p = paths[i].path
         $sessionStorage.tree.nodes.push({prevDirRelative: p, prevDir: p, opened: false, name: p})
       }
+  }
+
+  function resetArchive() {
+    //populate scope 
+    var archives = $filter('explorer')($scope.archives)
+    var size = archiveSize(archives)
+   
+    $scope.archive.class = {
+      alert: size > 2500000000,
+      warning: size < 2500000000 && size > 1500000000,
+      success: size < 1500000000
+    }
+
+    $scope.archive.size = $filter('prettyBytes')(size)
+  }
+
+  function archiveSize(archives, s) {
+    var s = 0
+    for(var i in archives) {
+      s += archives[i].size
+
+      if(archives[i].children) {
+        s += archiveSize(archives[i].children, s)
+      }
+    }
+    return s
   }
 
   if(!$sessionStorage.tree) {
@@ -72,7 +111,37 @@ angular.module('ezseed')
 
   $rootScope.$on('tree.update', function() {
     $sessionStorage.tree = {nodes: $scope.nodes}
+    resetArchive()
   })
+
+  $scope.archives = []
+  $scope.archiveName = 'archive-' + moment().format('YYYYMMDD')
+
+  $scope.archive = {
+    class: {},
+    size: 0
+  }
+
+  $scope.$watchCollection('archives', function() {
+    resetArchive()  
+  })
+
+  $scope.zipSelection = function() {
+    var archives = $filter('explorer')($scope.archives)
+
+    for(var i in archives) {
+      delete archives[i].children 
+    }
+
+    var link = '/files/archive?' + $filter('querystring')({paths: archives, name: $scope.archiveName})
+
+    //2048
+    if(link.length > 2000) {
+      console.error('too long') 
+    } else {
+      window.open(link)
+    }
+  }
 
 })
 

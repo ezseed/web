@@ -104,14 +104,17 @@ aside {
 }
 
 @media #{$medium-up} {
+    #container {
+        height: 100%;
+    }
+
 	#container > .columns {
 		display: table-cell;
 		vertical-align: top;
-		float: none;
 	}
 
 	aside {
-		height: 100vh;
+        height: 100vh;
 
 		&.mini {
 			width: 43px;

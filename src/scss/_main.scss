@@ -3,6 +3,7 @@
 body {
     font-family: 'Noto Sans', sans-serif;
 	background-color: scale-color(#fff, $lightness: -5%);
+    min-height: 100%;
 }
 
 #alert {

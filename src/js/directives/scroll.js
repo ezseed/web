@@ -12,10 +12,11 @@ angular.module('ezseed')
 
       if(md.os() === null) {
         angular.element($window).bind("scroll", function() {
+          //20 is the header size
           if(this.pageYOffset > 20) {
-            element.css({'padding-top': this.pageYOffset - 50 + 'px'})
+            element.css({'top': this.pageYOffset - 50 + 'px'})
           } else {
-            element.css({'padding-top': 0})
+            element.css({'top': 0})
           }
         })
       }

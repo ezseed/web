@@ -13,8 +13,6 @@ new=$(npm version $version)
 
 git push --tags
 
-npm publish
-
 git reset HEAD~2
 
 git checkout master

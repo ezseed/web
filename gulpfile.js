@@ -76,7 +76,7 @@ gulp.task('styles', function() {
   return gulp.src(paths.styles)
   .pipe(sass({errLogToConsole: true, includePaths: ['./bower_components']}))
   .pipe(autoprefixer({
-    browsers: ['last 2 version'],
+    browsers: ['last 2 version', 'Firefox > 20'],
     cascade: false
   }))
   .pipe(concat('app.css'))

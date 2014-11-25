@@ -44,9 +44,6 @@
   "overrides": {
     "foundation": {
       "ignore": true
-    },
-    "color-thief": {
-      "main": "src/color-thief.js"
     }
   },
   "resolutions": {

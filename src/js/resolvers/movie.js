@@ -1,4 +1,4 @@
-function MovieResolver($stateParams, $http, $q, $colorThief) {
+function MovieResolver($stateParams, $http, $q) {
   var defer = $q.defer()
 
   $http.get('movies/'+ $stateParams.movieId).success(function(data){
@@ -32,20 +32,11 @@ function MovieResolver($stateParams, $http, $q, $colorThief) {
       }
     }
 
-    if(data.infos.picture) {
-      $colorThief(data.infos.backdrop || data.infos.picture).then(function(colors) {
-        if(colors) {
-          data.color = colors[0]
-        }
-
-        defer.resolve(data)
-      })
-    } else {
-      if(!data.infos.backdrop)
-        data.infos.backdrop = 'img/movie/no_backdrop.png'
-
-      defer.resolve(data)
+    if(!data.infos.backdrop) {
+      data.infos.backdrop = 'img/movie/no_backdrop.png'
     }
+
+    defer.resolve(data)
   })
 
   return defer.promise

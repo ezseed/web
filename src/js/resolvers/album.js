@@ -1,4 +1,4 @@
-function AlbumResolver($stateParams, $http, $q, $colorThief, $filter) {
+function AlbumResolver($stateParams, $http, $q, $filter) {
   var defer = $q.defer()
 
   $http.get('albums/'+ $stateParams.albumId).success(function(data){
@@ -14,22 +14,9 @@ function AlbumResolver($stateParams, $http, $q, $colorThief, $filter) {
     if(data.picture) {
 
       data = $filter('albumsCover')(data)
-
-      //checking if it's a local element
-      if(location.origin.indexOf('localhost') !== -1) {
-        defer.resolve(data)
-      } else {
-        $colorThief(data.picture).then(function(colors) {
-          if(colors) {
-            data.color = colors[0] 
-          }
-          defer.resolve(data)
-        })
-      }
-
-    } else {
-      defer.resolve(data)
     }
+
+    defer.resolve(data)
   })
 
   return defer.promise

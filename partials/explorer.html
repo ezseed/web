@@ -6,10 +6,10 @@
     <li ng-if="archives.length > 0" class="right">
       <div class="row collapse">
         <div class="large-7 columns">
-          <input type="text" ng-model="archiveName" />
+          <input type="text" ng-model="archive.name" />
         </div>
         <div class="large-5 columns">
-          <a class="button primary postfix" ng-class="archive.class" ng-click="zipSelection()">.zip ({{archive.size}})</a>
+          <a class="button primary postfix" ng-class="archive.class" ng-href="{{archive.link}}">.zip ({{archive.size}})</a>
         </div>
       </div>
     </li>

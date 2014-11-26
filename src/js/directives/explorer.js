@@ -85,6 +85,13 @@ angular.module('ezseed')
     }
 
     $scope.archive.size = $filter('prettyBytes')(size)
+
+    for(var i in archives) {
+      delete archives[i].children 
+    }
+
+    $scope.archive.link = '/files/archive?' + $filter('querystring')({paths: archives, name: $scope.archive.name})
+
   }
 
   function archiveSize(archives, s) {
@@ -115,33 +122,20 @@ angular.module('ezseed')
   })
 
   $scope.archives = []
-  $scope.archiveName = 'archive-' + moment().format('YYYYMMDD')
+  
 
   $scope.archive = {
     class: {},
-    size: 0
+    size: 0,
+    name: 'archive-' + moment().format('YYYYMMDD')
   }
 
   $scope.$watchCollection('archives', function() {
     resetArchive()  
   })
 
-  $scope.zipSelection = function() {
-    var archives = $filter('explorer')($scope.archives)
-
-    for(var i in archives) {
-      delete archives[i].children 
-    }
-
-    var link = '/files/archive?' + $filter('querystring')({paths: archives, name: $scope.archiveName})
-
-    //2048
-    if(link.length > 2000) {
-      console.error('too long') 
-    } else {
-      window.open(link)
-    }
-  }
-
+  $scope.$watch('archive.name', function() {
+    resetArchive()
+  })
 })
 

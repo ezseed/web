@@ -29,7 +29,7 @@ angular.module('ezseed')
         node.checked = event.currentTarget.checked 
 
         //node is checked but not opened
-        if(node.checked == true && !node.opened && !node.children) {
+        if(node.checked == true && (!node.opened || !node.children)) {
           $scope.selectNode(event, node.prevDirRelative)
         }
       }
@@ -86,11 +86,13 @@ angular.module('ezseed')
 
     $scope.archive.size = $filter('prettyBytes')(size)
 
+    var copy = angular.copy(archives)
+
     for(var i in archives) {
-      delete archives[i].children 
+      delete copy[i].children 
     }
 
-    $scope.archive.link = '/files/archive?' + $filter('querystring')({paths: archives, name: $scope.archive.name})
+    $scope.archive.link = '/files/archive?' + $filter('querystring')({paths: copy, name: $scope.archive.name})
 
   }
 

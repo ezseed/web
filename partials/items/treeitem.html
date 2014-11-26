@@ -9,7 +9,8 @@
       </span>
       {{node.prevDirRelative || node.name}} 
     </a>
-    <input type="checkbox" checklist-value="node" ng-click="check($event, node)" checklist-model="archives" ng-show="node.size"/>
+    <input type="checkbox" class="checkbox" id="check-{{node.name}}" checklist-value="node" ng-click="check($event, node)" checklist-model="archives" ng-show="node.size"/>
+    <label for="check-{{node.name}}"></label>
   </span>
   <!-- <input type="checkbox" checklist&#45;value="node" ng&#45;if="!node.type" checklist&#45;model="archives" /> -->
 

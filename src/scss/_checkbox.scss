@@ -2,27 +2,41 @@
 	display: none;
 }
 
+.checkbox+label {
+    margin:0!important;
+}
+
 .checkbox ~ label:before {
 	font-family: "fontello";
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
- -webkit-font-smoothing:antialiased;
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    -webkit-font-smoothing:antialiased;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+    margin-left: .2em;
+    text-shadow: 0px 1px 0px #fff;
+}
 
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-  font-variant: normal;
-  text-transform: none;
-  /* fix buttons height, for twitter bootstrap */
-  line-height: 1em;
-  margin-left: .2em;
-	content: '\e80f';
-  text-shadow: 0px 1px 0px #fff;
+.checkbox ~ label:before {
+    content: '\e809';
 }
 
 .checkbox:checked ~ label:before {
+	content: '\e802';
+}
+
+.checkbox.folder ~ label:before {
+    content: '\e80f';
+}
+
+.checkbox.folder:checked ~ label:before {
 	content: '\e816';
 }

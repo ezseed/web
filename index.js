@@ -19,7 +19,7 @@ module.exports = function(router, app, config) {
 
   //main view
   router.get('/', function(req, res){
-    res.render('index', {base: config.base})
+    res.render('index', {base: config.base || '/'})
   })
 
   router.get('/locales.json', function(req, res) {

@@ -98,11 +98,6 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
             var defer = $q.defer()
 
             $http.get('api/-/files', {params: {limit: 14, sort: '-dateAdded'}}).success(function(data){
-
-              for(var i in data.albums) {
-                data.albums[i] = $filter('albumsCover')(data.albums[i])
-              }
-
               defer.resolve(data) 
             })
 
@@ -169,9 +164,10 @@ angular.module('ezseed', ['mm.foundation', 'ngRoute', 'ngStorage', 'ngAnimate', 
   if($localStorage.user) {
     $http.defaults.headers.common.Authorization = 'Bearer '+$localStorage.user.token
     $translate.use('fr')
-    $http.get('/api/config').success(function(data) {
+    $http.get('api/config').success(function(data) {
       moment.locale(data.lang)
       $translate.use('fr')
+      $rootScope.base = data.base
     })
   } else {
     $state.go('login')

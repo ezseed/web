@@ -11,11 +11,6 @@ function AlbumResolver($stateParams, $http, $q, $filter) {
       }
     })
 
-    if(data.picture) {
-
-      data = $filter('albumsCover')(data)
-    }
-
     defer.resolve(data)
   })
 

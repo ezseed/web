@@ -7,7 +7,7 @@ angular.module('ezseed')
 
   var urls = []
   for(var i in album.songs) {
-    urls.push('/albums/'+album.songs[i]._id+'/download') 
+    urls.push('albums/'+album.songs[i]._id+'/download') 
   }
 
   var player = AVPlayer($rootScope)

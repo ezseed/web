@@ -36,7 +36,7 @@ angular.module('ezseed')
             var e = document.createElement('A')
             e.href = data.albums[i].picture
             if(e.hostname == location.hostname && e.pathname.indexOf('/tmp') !== 0) {
-              data.albums[i].picture = window.location.origin + '/albums/' + data.albums[i]._id + '/cover'
+              data.albums[i].picture = 'albums/' + data.albums[i]._id + '/cover'
             }
           }
         }

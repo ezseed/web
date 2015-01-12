@@ -4,11 +4,10 @@ var fs = require('fs')
 module.exports = function(router, app, config) {
   app.use(express.static(__dirname, {maxAge: 3600}))
 
-  app.engine('ntl', function (filePath, options, callback) { // define the template engine
+  app.engine('ntl', function (filePath, options, callback) {
     fs.readFile(filePath, function (err, content) {
       if (err) throw new Error(err);
-      // this is an exteremly simple template engine
-      var rendered = content.toString().replace('#base#', options.base)
+      var rendered = content.toString().replace('#basepath#', config.basepath)
       return callback(null, rendered)
     })
   })

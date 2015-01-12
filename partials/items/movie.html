@@ -16,7 +16,7 @@
     </div>
     <div class="row">
       <div class="large-2 columns" >
-        <img ng-src="{{movie.infos.picture || '/img/movie/no_cover.jpg'}}" alt="{{movie.name}}">
+        <img ng-src="{{movie.infos.picture || 'img/movie/no_cover.jpg'}}" alt="{{movie.name}}">
       </div>
       <div class="large-10 columns">
         <h2>{{movie.infos.title || movie.name}} <small ng-if="movie.movieType == 'tvseries'">S{{movie.season}}</small> <i class="icon-pencil text-small"></i></h2>
@@ -49,7 +49,7 @@
              <div class="large-12 columns">
              </div>
            </div>
-           <a href="/movies/{{video._id}}/download" class="button small secondary"><i class="icon-download"></i> Download</a>
+           <a href="movies/{{video._id}}/download" class="button small secondary"><i class="icon-download"></i> Download</a>
            <button class="small secondary" ng-click="play(video)"><i class="icon-play"></i> Play</button>
         </div>
       </li>

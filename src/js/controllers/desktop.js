@@ -1,6 +1,7 @@
 angular.module('ezseed')
-.factory('$socket', function(socketFactory) {
-  return socketFactory({prefix: ''})
+.factory('$socket', function(socketFactory, $window) {
+  var sock = io.connect(window.location.pathname.substr(1))
+  return socketFactory({prefix: '', ioSocket: sock})
 })
 .controller('DesktopCtrl', function($scope, $stateParams, $rootScope, recent, $recent, $socket, $loaderService) {
   $rootScope.recent = recent

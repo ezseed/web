@@ -7,7 +7,7 @@ module.exports = function(router, app, config) {
   app.engine('ntl', function (filePath, options, callback) {
     fs.readFile(filePath, function (err, content) {
       if (err) throw new Error(err);
-      var rendered = content.toString().replace('#basepath#', config.basepath)
+      var rendered = content.toString().replace('#basepath#', options.basepath)
       return callback(null, rendered)
     })
   })
@@ -18,7 +18,7 @@ module.exports = function(router, app, config) {
 
   //main view
   router.get('/', function(req, res){
-    res.render('index', {base: config.base || '/'})
+    res.render('index', {basepath: config.basepath || '/'})
   })
 
   router.get('/locales.json', function(req, res) {
